@@ -1,10 +1,5 @@
 import { createClient } from 'contentful';
-import {
-	CONTENTFUL_SPACE_ID,
-	CONTENTFUL_ACCESS_TOKEN,
-	CONTENTFUL_PREVIEW_ACCESS_TOKEN,
-	CONTENTFUL_ENVIRONMENT
-} from '$env/static/private';
+import { env } from '$env/dynamic/private';
 
 /**
  * @typedef {Object} ContentfulClientOptions
@@ -18,9 +13,9 @@ import {
  */
 function getContentfulClient(options = { preview: false }) {
 	return createClient({
-		space: CONTENTFUL_SPACE_ID,
-		accessToken: options.preview ? CONTENTFUL_PREVIEW_ACCESS_TOKEN : CONTENTFUL_ACCESS_TOKEN,
-		environment: CONTENTFUL_ENVIRONMENT || 'master',
+		space: env.CONTENTFUL_SPACE_ID,
+		accessToken: options.preview ? env.CONTENTFUL_PREVIEW_ACCESS_TOKEN : env.CONTENTFUL_ACCESS_TOKEN,
+		environment: env.CONTENTFUL_ENVIRONMENT || 'master',
 		host: options.preview ? 'preview.contentful.com' : 'cdn.contentful.com'
 	});
 }
