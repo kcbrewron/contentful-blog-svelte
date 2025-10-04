@@ -1,5 +1,5 @@
 {
-  "name": "sveltekit-d1-tailwindcss-template",
+  "name": "contentful-svelte-blog",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,21 +8,34 @@
     "preview": "vite preview",
     "test": "vitest",
     "docs": "jsdoc -c jsdoc.config.json",
-    "d1:create": "npx d1 create --name",
-    "d1:migrate": "npx d1 apply migration --database your-database-name --env your-env-name"
+    "deploy": "npm run build && npx wrangler deploy",
+    "deploy:dry-run": "npm run build && npx wrangler deploy --dry-run",
+    "wrangler:tail": "npx wrangler tail",
+    "wrangler:dev": "npm run build && npx wrangler dev",
+    "contentful:publish-model": "node scripts/publish-content-model.js",
+    "contentful:list-types": "node scripts/list-content-types.js"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.0.0",
+    "@sveltejs/adapter-cloudflare": "^7.2.4",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "autoprefixer": "^10.4.14",
+    "contentful-management": "^11.60.4",
+    "dotenv": "^17.2.3",
     "jsdoc": "^4.0.2",
     "postcss": "^8.4.24",
     "svelte": "^4.0.0",
     "svelte-check": "^3.4.3",
     "tailwindcss": "^3.3.2",
     "vite": "^5.0.0",
-    "vitest": "^1.0.0"
+    "vitest": "^1.0.0",
+    "wrangler": "^4.42.0"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@contentful/rich-text-html-renderer": "^17.1.5",
+    "contentful": "^11.8.4"
+  },
+  "packageManager": "yarn@4.10.3"
 }

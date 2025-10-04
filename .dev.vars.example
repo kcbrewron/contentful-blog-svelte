@@ -1,0 +1,7 @@
+# Local development environment variables for Wrangler
+# Copy this file to .dev.vars and fill in your actual values
+# .dev.vars is automatically loaded by wrangler dev and is gitignored
+
+CONTENTFUL_ACCESS_TOKEN=your_access_token_here
+CONTENTFUL_PREVIEW_ACCESS_TOKEN=your_preview_token_here
+CONTENTFUL_MANAGEMENT_TOKEN=your_management_token_here

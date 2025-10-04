@@ -1,109 +1,149 @@
-# sveltekit-d1-tailwindcss-template
+# Contentful Blog - SvelteKit
 
-A modern web application template combining SvelteKit, Cloudflare D1 Database, and TailwindCSS for rapid development of performant, full-stack applications.
+A modern blog application built with SvelteKit and Contentful CMS, deployed as a Cloudflare Worker with Assets.
 
-## Features
-
-- 🚀 [SvelteKit](https://kit.svelte.dev/) - Full-stack application framework
-- 💾 [Cloudflare D1](https://developers.cloudflare.com/d1/) - SQLite-compatible database on the edge
-- 🎨 [TailwindCSS](https://tailwindcss.com/) - Utility-first CSS framework
-- ✅ Type-safe database operations
-- 📱 Responsive design out of the box
-- 🧪 Testing setup with Vitest
-- 📚 JSDoc documentation
-
-## Prerequisites
-
-- Node.js (version 16 or higher)
-- Cloudflare account
-- Wrangler CLI installed globally (`npm install -g wrangler`)
-
-## Getting Started
-
-1. Create a new project using this template:
-   ```bash
-   npx create-next-app my-app -e https://github.com/kcbrewron/sveltekit-d1-tailwindcss-template
-   cd my-app
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Set up your D1 database:
-   ```bash
-   wrangler d1 create my-db
-   ```
-
-4. Update the `wrangler.toml` with your D1 database details.
-
-5. Run the development server:
-   ```bash
-   npm run dev
-   ```
-
-## Project Structure
-
-```
-├── migrations/       # Database migration files
-├── src/
-│   ├── lib/         # Shared components and utilities
-│   ├── routes/      # SvelteKit routes and pages
-│   └── app.css      # Global styles
-├── static/          # Static assets
-└── tests/           # Test files
-```
-
-## Database Migrations
-
-To run migrations:
+## 🚀 Quick Start
 
 ```bash
-npm run migrate
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .dev.vars.example .dev.vars
+# Edit .dev.vars with your Contentful credentials
+
+# Start development server
+npm run dev
 ```
 
-## Deployment
+## 📦 Deployment
 
-1. Build the application:
-   ```bash
-   npm run build
-   ```
+```bash
+# Build and deploy to Cloudflare Workers
+npm run deploy
 
-2. Deploy to Cloudflare Pages:
-   ```bash
-   wrangler pages deploy .svelte-kit/cloudflare
-   ```
+# Or deploy with dry-run to preview changes
+npm run deploy:dry-run
+```
 
-## Development
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
 
-### Available Scripts
+## 🛠️ Available Scripts
 
+### Development
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run test` - Run tests
-- `npm run check` - Type-check the codebase
-- `npm run lint` - Lint the codebase
+- `npm run preview` - Preview production build locally
+- `npm run wrangler:dev` - Test with Wrangler dev server
 
-### Environment Variables
+### Deployment
+- `npm run deploy` - Build and deploy to Cloudflare Workers
+- `npm run deploy:dry-run` - Preview deployment without publishing
+- `npm run wrangler:tail` - View real-time logs from production
 
-Create a `.env` file in the root directory:
+### Contentful
+- `npm run contentful:publish-model` - Publish content model to Contentful
+- `npm run contentful:list-types` - List existing content types
 
-```env
-DATABASE_URL=your_d1_database_url
+### Testing & Docs
+- `npm run test` - Run tests with Vitest
+- `npm run docs` - Generate JSDoc documentation
+
+## 🏗️ Architecture
+
+- **Framework:** SvelteKit 2.x
+- **CMS:** Contentful
+- **Styling:** TailwindCSS
+- **Deployment:** Cloudflare Workers with Assets
+- **Language:** JavaScript with JSDoc type annotations
+
+## 📁 Project Structure
+
+```
+.
+├── src/
+│   ├── routes/              # SvelteKit file-based routing
+│   │   ├── +layout.svelte   # Global layout with navigation
+│   │   ├── +page.svelte     # Homepage
+│   │   ├── blog/            # Blog post pages
+│   │   ├── category/        # Category landing pages
+│   │   └── [slug]/          # Dynamic page routes
+│   ├── lib/
+│   │   ├── components/      # Reusable Svelte components
+│   │   └── contentful/      # Contentful API client & queries
+│   ├── app.html             # HTML template
+│   └── app.css              # Global styles (Tailwind)
+├── scripts/                 # Contentful management scripts
+├── wrangler.jsonc          # Cloudflare Workers configuration
+├── svelte.config.js        # SvelteKit configuration
+└── tailwind.config.js      # Tailwind configuration
 ```
 
-## Contributing
+## 🔑 Environment Variables
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+### Local Development (.dev.vars)
+```bash
+CONTENTFUL_ACCESS_TOKEN=...
+CONTENTFUL_PREVIEW_ACCESS_TOKEN=...
+CONTENTFUL_MANAGEMENT_TOKEN=...
+```
 
-## License
+### Production (wrangler.jsonc + secrets)
+```jsonc
+// wrangler.jsonc - Non-secrets
+{
+  "vars": {
+    "CONTENTFUL_SPACE_ID": "your_space_id",
+    "CONTENTFUL_ENVIRONMENT": "master"
+  }
+}
+```
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```bash
+# Set production secrets
+npx wrangler secret put CONTENTFUL_ACCESS_TOKEN
+npx wrangler secret put CONTENTFUL_PREVIEW_ACCESS_TOKEN
+npx wrangler secret put CONTENTFUL_MANAGEMENT_TOKEN
+```
 
-## Acknowledgments
+## 📝 Content Model
 
-- [SvelteKit Documentation](https://kit.svelte.dev/docs)
-- [Cloudflare D1 Documentation](https://developers.cloudflare.com/d1/)
-- [TailwindCSS Documentation](https://tailwindcss.com/docs)
+The blog uses the following Contentful content types:
+
+- **Page** - Flexible pages built from section components
+- **Blog Post** - Internal blog posts with rich text content
+- **External Article** - Links to articles on Medium, Dev.to, etc.
+- **Category** - Content categories with theme colors
+- **Author** - Author profiles
+- **Section Types:**
+  - Navigation Bar
+  - Paragraph Block
+  - Image Content Block
+  - Block Quote
+  - Code Block
+
+## 🎨 Features
+
+- ✅ Dynamic page assembly from Contentful sections
+- ✅ Blog posts with rich text rendering
+- ✅ External article integration (Medium, Dev.to)
+- ✅ Category landing pages with SEO optimization
+- ✅ Hero section with image collage from recent posts
+- ✅ Preview mode for unpublished content (`?preview=true`)
+- ✅ Responsive design with TailwindCSS
+- ✅ Edge deployment on Cloudflare Workers
+
+## 🔧 Configuration
+
+See [CLAUDE.md](./CLAUDE.md) for development guidelines and code conventions.
+
+## 📚 Documentation
+
+- [Deployment Guide](./DEPLOYMENT.md)
+- [SvelteKit Docs](https://kit.svelte.dev/)
+- [Contentful Docs](https://www.contentful.com/developers/docs/)
+- [Cloudflare Workers Docs](https://developers.cloudflare.com/workers/)
+
+## 📄 License
+
+Private project - All rights reserved

@@ -1,0 +1,364 @@
+{
+  "contentTypes": [
+    {
+      "sys": {
+        "id": "page",
+        "name": "Page",
+        "description": "A flexible page that can be composed of multiple horizontal sections"
+      },
+      "fields": [
+        {
+          "id": "title",
+          "name": "Page Title",
+          "type": "Symbol",
+          "required": true,
+          "validations": [
+            {
+              "unique": true,
+              "message": "Page title must be unique"
+            },
+            {
+              "size": {
+                "min": 1,
+                "max": 100
+              }
+            }
+          ]
+        },
+        {
+          "id": "slug",
+          "name": "Page Slug",
+          "type": "Symbol",
+          "required": true,
+          "validations": [
+            {
+              "unique": true,
+              "message": "Page slug must be unique"
+            },
+            {
+              "regexp": {
+                "pattern": "^[a-z0-9-]+$",
+                "flags": null
+              }
+            }
+          ]
+        },
+        {
+          "id": "navigationBar",
+          "name": "Navigation Bar",
+          "type": "Link",
+          "linkType": "Entry",
+          "required": false,
+          "validations": [
+            {
+              "linkContentType": ["navigationBar"]
+            }
+          ]
+        },
+        {
+          "id": "sections",
+          "name": "Page Sections",
+          "type": "Array",
+          "items": {
+            "type": "Link",
+            "linkType": "Entry",
+            "validations": [
+              {
+                "linkContentType": [
+                  "paragraphBlock",
+                  "imageContentBlock",
+                  "blockQuote",
+                  "codeBlock"
+                ]
+              }
+            ]
+          },
+          "required": false
+        },
+        {
+          "id": "seoMetadata",
+          "name": "SEO Metadata",
+          "type": "Object",
+          "required": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "navigationBar",
+        "name": "Navigation Bar",
+        "description": "Site-wide navigation configuration"
+      },
+      "fields": [
+        {
+          "id": "name",
+          "name": "Navigation Name",
+          "type": "Symbol",
+          "required": true,
+          "validations": [
+            {
+              "size": {
+                "min": 1,
+                "max": 50
+              }
+            }
+          ]
+        },
+        {
+          "id": "navigationItems",
+          "name": "Navigation Items",
+          "type": "Array",
+          "items": {
+            "type": "Object",
+            "validations": [
+              {
+                "prohibitedPrimitives": [
+                  "string",
+                  "number",
+                  "boolean"
+                ]
+              }
+            ]
+          },
+          "required": true
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "paragraphBlock",
+        "name": "Paragraph Block",
+        "description": "A flexible text section with rich formatting"
+      },
+      "fields": [
+        {
+          "id": "title",
+          "name": "Block Title",
+          "type": "Symbol",
+          "required": false,
+          "validations": [
+            {
+              "size": {
+                "max": 100
+              }
+            }
+          ]
+        },
+        {
+          "id": "content",
+          "name": "Paragraph Content",
+          "type": "RichText",
+          "required": true,
+          "validations": [
+            {
+              "enabledMarks": [
+                "bold",
+                "italic",
+                "underline",
+                "code"
+              ],
+              "enabledNodeTypes": [
+                "heading-1",
+                "heading-2",
+                "heading-3",
+                "heading-4",
+                "heading-5",
+                "heading-6",
+                "ordered-list",
+                "unordered-list",
+                "hr",
+                "blockquote",
+                "hyperlink",
+                "entry-hyperlink",
+                "asset-hyperlink"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "backgroundColor",
+          "name": "Background Color",
+          "type": "Symbol",
+          "required": false,
+          "validations": [
+            {
+              "in": [
+                "white",
+                "light-gray",
+                "dark-gray",
+                "black"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "imageContentBlock",
+        "name": "Image + Content Block",
+        "description": "Section with image and text, configurable layout"
+      },
+      "fields": [
+        {
+          "id": "title",
+          "name": "Block Title",
+          "type": "Symbol",
+          "required": false,
+          "validations": [
+            {
+              "size": {
+                "max": 100
+              }
+            }
+          ]
+        },
+        {
+          "id": "image",
+          "name": "Image",
+          "type": "Link",
+          "linkType": "Asset",
+          "required": true,
+          "validations": [
+            {
+              "linkMimetypeGroup": ["image"]
+            }
+          ]
+        },
+        {
+          "id": "content",
+          "name": "Block Content",
+          "type": "RichText",
+          "required": true,
+          "validations": [
+            {
+              "enabledMarks": [
+                "bold",
+                "italic",
+                "underline",
+                "code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "imagePosition",
+          "name": "Image Position",
+          "type": "Symbol",
+          "required": true,
+          "validations": [
+            {
+              "in": [
+                "left",
+                "right"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "blockQuote",
+        "name": "Block Quote",
+        "description": "Styled quote block with optional attribution"
+      },
+      "fields": [
+        {
+          "id": "quote",
+          "name": "Quote Text",
+          "type": "Text",
+          "required": true,
+          "validations": [
+            {
+              "size": {
+                "max": 500
+              }
+            }
+          ]
+        },
+        {
+          "id": "author",
+          "name": "Quote Author",
+          "type": "Symbol",
+          "required": false,
+          "validations": [
+            {
+              "size": {
+                "max": 100
+              }
+            }
+          ]
+        },
+        {
+          "id": "authorTitle",
+          "name": "Author Title/Description",
+          "type": "Symbol",
+          "required": false,
+          "validations": [
+            {
+              "size": {
+                "max": 150
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "codeBlock",
+        "name": "Code Block",
+        "description": "Preformatted code segment with syntax highlighting"
+      },
+      "fields": [
+        {
+          "id": "title",
+          "name": "Code Block Title",
+          "type": "Symbol",
+          "required": false,
+          "validations": [
+            {
+              "size": {
+                "max": 100
+              }
+            }
+          ]
+        },
+        {
+          "id": "language",
+          "name": "Programming Language",
+          "type": "Symbol",
+          "required": true,
+          "validations": [
+            {
+              "in": [
+                "javascript",
+                "typescript",
+                "python",
+                "rust",
+                "go",
+                "ruby",
+                "php",
+                "swift",
+                "kotlin",
+                "html",
+                "css",
+                "sql",
+                "bash",
+                "yaml",
+                "json"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "code",
+          "name": "Code Content",
+          "type": "Text",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
