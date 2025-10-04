@@ -11,7 +11,7 @@
 
 	// Environment variables (non-secret)
 	"vars": {
-		"CONTENTFUL_SPACE_ID": "your_space_id_here",
+		"CONTENTFUL_SPACE_ID": "2tyl7ps8aucz",
 		"CONTENTFUL_ENVIRONMENT": "master"
 	},
 
