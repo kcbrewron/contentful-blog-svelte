@@ -102,7 +102,7 @@ async function publishContentModel() {
       {
         id: 'paragraphBlock',
         name: 'Paragraph Block',
-        description: 'A text paragraph section',
+        description: 'A text paragraph section with rich text formatting',
         displayField: 'heading',
         fields: [
           {
@@ -113,9 +113,33 @@ async function publishContentModel() {
           },
           {
             id: 'content',
-            name: 'Content',
+            name: 'Content (deprecated - use Rich Content)',
             type: 'Text',
-            required: true
+            required: false,
+            disabled: true,
+            omitted: true
+          },
+          {
+            id: 'richContent',
+            name: 'Rich Content',
+            type: 'RichText',
+            required: true,
+            validations: [
+              {
+                enabledNodeTypes: [
+                  'heading-1',
+                  'heading-2',
+                  'heading-3',
+                  'ordered-list',
+                  'unordered-list',
+                  'hyperlink',
+                  'bold',
+                  'italic',
+                  'underline',
+                  'paragraph'
+                ]
+              }
+            ]
           },
           {
             id: 'alignment',
@@ -129,7 +153,7 @@ async function publishContentModel() {
       {
         id: 'imageContentBlock',
         name: 'Image + Content Block',
-        description: 'A block with an image and accompanying text',
+        description: 'A block with an image and accompanying rich text',
         displayField: 'heading',
         fields: [
           {
@@ -147,9 +171,33 @@ async function publishContentModel() {
           },
           {
             id: 'content',
-            name: 'Content',
+            name: 'Content (deprecated - use Rich Content)',
             type: 'Text',
-            required: false
+            required: false,
+            disabled: true,
+            omitted: true
+          },
+          {
+            id: 'richContent',
+            name: 'Rich Content',
+            type: 'RichText',
+            required: false,
+            validations: [
+              {
+                enabledNodeTypes: [
+                  'heading-1',
+                  'heading-2',
+                  'heading-3',
+                  'ordered-list',
+                  'unordered-list',
+                  'hyperlink',
+                  'bold',
+                  'italic',
+                  'underline',
+                  'paragraph'
+                ]
+              }
+            ]
           },
           {
             id: 'imagePosition',

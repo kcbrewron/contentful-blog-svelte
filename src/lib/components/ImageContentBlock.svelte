@@ -1,12 +1,21 @@
 <script>
+	import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+
 	/**
-	 * @type {{ fields: { heading: string, content?: string, image: any, imagePosition: string } }}
+	 * @type {{ fields: { heading: string, richContent?: any, content?: string, image: any, imagePosition: string } }}
 	 */
 	export let section;
 
 	$: imagePosition = section.fields.imagePosition || 'left';
 	$: imageUrl = section.fields.image?.fields?.file?.url;
 	$: imageAlt = section.fields.image?.fields?.description || section.fields.image?.fields?.title || '';
+
+	// Use richContent if available, otherwise fallback to plain content
+	$: htmlContent = section.fields.richContent
+		? documentToHtmlString(section.fields.richContent)
+		: section.fields.content
+			? `<p>${section.fields.content}</p>`
+			: '';
 </script>
 
 <section class="py-12 bg-white">
@@ -19,15 +28,15 @@
 						<img src={imageUrl} alt={imageAlt} class="w-full h-auto rounded-lg shadow-lg" />
 					{/if}
 				</div>
-				{#if section.fields.content}
-					<div class="order-2">
-						<p class="text-gray-700 text-lg whitespace-pre-wrap">{section.fields.content}</p>
+				{#if htmlContent}
+					<div class="order-2 prose prose-lg">
+						{@html htmlContent}
 					</div>
 				{/if}
 			{:else}
-				{#if section.fields.content}
-					<div class="order-2 md:order-1">
-						<p class="text-gray-700 text-lg whitespace-pre-wrap">{section.fields.content}</p>
+				{#if htmlContent}
+					<div class="order-2 md:order-1 prose prose-lg">
+						{@html htmlContent}
 					</div>
 				{/if}
 				<div class="order-1 md:order-2">
