@@ -116,14 +116,13 @@ async function publishContentModel() {
             name: 'Content (deprecated - use Rich Content)',
             type: 'Text',
             required: false,
-            disabled: true,
-            omitted: true
+            disabled: true
           },
           {
             id: 'richContent',
             name: 'Rich Content',
             type: 'RichText',
-            required: true,
+            required: false,
             validations: [
               {
                 enabledNodeTypes: [
@@ -174,8 +173,7 @@ async function publishContentModel() {
             name: 'Content (deprecated - use Rich Content)',
             type: 'Text',
             required: false,
-            disabled: true,
-            omitted: true
+            disabled: true
           },
           {
             id: 'richContent',
