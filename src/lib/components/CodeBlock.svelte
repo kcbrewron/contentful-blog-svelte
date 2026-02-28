@@ -11,11 +11,15 @@
 	<div class="container mx-auto px-4 max-w-6xl">
 		<h3 class="text-xl font-semibold mb-4 text-gray-100">{section.fields.caption}</h3>
 		<div class="relative">
-			<div class="absolute top-3 right-3 text-xs text-gray-400 uppercase font-mono">
+			<div class="absolute top-3 right-3 text-xs text-gray-300 uppercase font-mono" aria-hidden="true">
 				{language}
 			</div>
 			<pre
-				class="bg-gray-800 rounded-lg p-6 overflow-x-auto"><code class="language-{language} text-sm text-gray-100 font-mono">{section.fields.code}</code></pre>
+				class="bg-gray-800 rounded-lg p-6 overflow-x-auto"
+				tabindex="0"
+				role="region"
+				aria-label="{section.fields.caption} code example"
+			><code class="language-{language} text-sm text-gray-100 font-mono">{section.fields.code}</code></pre>
 		</div>
 	</div>
 </section>

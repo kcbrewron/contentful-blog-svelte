@@ -25,7 +25,7 @@
 <section class="relative text-white py-24 overflow-hidden min-h-[600px] flex items-center">
 	<!-- Image Collage Background -->
 	{#if featuredImages.length > 0}
-		<div class="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-2">
+		<div class="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-2" aria-hidden="true">
 			{#each featuredImages.slice(0, 4) as imageUrl, index}
 				<div class="relative overflow-hidden animate-fade-in" style="animation-delay: {index * 100}ms">
 					<img
@@ -83,7 +83,7 @@
 						class="inline-flex items-center gap-2 bg-white text-blue-700 font-semibold px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105"
 					>
 						{heroData.ctaText}
-						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 							<path
 								stroke-linecap="round"
 								stroke-linejoin="round"

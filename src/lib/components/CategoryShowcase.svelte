@@ -54,7 +54,7 @@
 								<span class="text-sm opacity-75">
 									{postCount} {postCount === 1 ? 'article' : 'articles'}
 								</span>
-								<span class="text-2xl group-hover:translate-x-2 transition-transform">→</span>
+								<span class="text-2xl group-hover:translate-x-2 transition-transform" aria-hidden="true">→</span>
 							</div>
 						</div>
 					</a>

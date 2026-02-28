@@ -29,15 +29,18 @@
 		class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row"
 	>
 		{#if featuredImageUrl}
+			<!-- Image link is hidden from a11y tree — title link below is the primary link -->
 			<a
 				href={postUrl}
 				class="block md:w-2/5 flex-shrink-0"
+				tabindex="-1"
+				aria-hidden="true"
 				target={isExternalLink ? '_blank' : undefined}
 				rel={isExternalLink ? 'noopener noreferrer' : undefined}
 			>
 				<img
 					src={featuredImageUrl}
-					alt={post.fields.title}
+					alt=""
 					class="w-full h-48 md:h-full object-cover hover:opacity-90 transition-opacity"
 				/>
 			</a>
@@ -49,14 +52,14 @@
 					<a href="/category/{categorySlug}" class="text-blue-600 hover:underline font-medium">
 						{categoryName}
 					</a>
-					<span>•</span>
+					<span aria-hidden="true">•</span>
 					<time datetime={post.fields.publishedDate}>{formattedDate}</time>
 					{#if post.fields.estimatedReadingTime}
-						<span>•</span>
+						<span aria-hidden="true">•</span>
 						<span>{post.fields.estimatedReadingTime} min read</span>
 					{/if}
 					{#if platform}
-						<span>•</span>
+						<span aria-hidden="true">•</span>
 						<span
 							class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800"
 						>
@@ -74,7 +77,7 @@
 					>
 						{post.fields.title}
 						{#if isExternalLink}
-							<svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 								<path
 									stroke-linecap="round"
 									stroke-linejoin="round"
@@ -82,6 +85,7 @@
 									d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
 								/>
 							</svg>
+							<span class="sr-only">(opens in new tab)</span>
 						{/if}
 					</a>
 				</h3>
@@ -98,7 +102,8 @@
 					rel={isExternalLink ? 'noopener noreferrer' : undefined}
 				>
 					{isExternalLink ? 'Read on ' + platform : 'Read more'}
-					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					{#if isExternalLink}<span class="sr-only">(opens in new tab)</span>{/if}
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -115,10 +120,11 @@
 		class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
 	>
 	{#if featuredImageUrl}
-		<a href={postUrl} class="block" target={isExternalLink ? '_blank' : undefined} rel={isExternalLink ? 'noopener noreferrer' : undefined}>
+		<!-- Image link is hidden from a11y tree — title link below is the primary link -->
+		<a href={postUrl} class="block" tabindex="-1" aria-hidden="true" target={isExternalLink ? '_blank' : undefined} rel={isExternalLink ? 'noopener noreferrer' : undefined}>
 			<img
 				src={featuredImageUrl}
-				alt={post.fields.title}
+				alt=""
 				class="w-full h-48 object-cover hover:opacity-90 transition-opacity"
 			/>
 		</a>
@@ -129,14 +135,14 @@
 			<a href="/category/{categorySlug}" class="text-blue-600 hover:underline font-medium">
 				{categoryName}
 			</a>
-			<span>•</span>
+			<span aria-hidden="true">•</span>
 			<time datetime={post.fields.publishedDate}>{formattedDate}</time>
 			{#if post.fields.estimatedReadingTime}
-				<span>•</span>
+				<span aria-hidden="true">•</span>
 				<span>{post.fields.estimatedReadingTime} min read</span>
 			{/if}
 			{#if platform}
-				<span>•</span>
+				<span aria-hidden="true">•</span>
 				<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
 					{platform}
 				</span>
@@ -147,9 +153,10 @@
 			<a href={postUrl} class="hover:text-blue-600 transition-colors" target={isExternalLink ? '_blank' : undefined} rel={isExternalLink ? 'noopener noreferrer' : undefined}>
 				{post.fields.title}
 				{#if isExternalLink}
-					<svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
 					</svg>
+					<span class="sr-only">(opens in new tab)</span>
 				{/if}
 			</a>
 		</h2>
@@ -160,11 +167,13 @@
 			<span class="text-sm text-gray-600">by {authorName}</span>
 			<a
 				href={postUrl}
-				class="text-blue-600 hover:text-blue-800 font-medium text-sm"
+				class="text-blue-600 hover:text-blue-800 font-medium text-sm inline-flex items-center gap-1"
 				target={isExternalLink ? '_blank' : undefined}
 				rel={isExternalLink ? 'noopener noreferrer' : undefined}
 			>
-				{isExternalLink ? 'Read on ' + platform : 'Read more'} →
+				{isExternalLink ? 'Read on ' + platform : 'Read more'}
+				{#if isExternalLink}<span class="sr-only">(opens in new tab)</span>{/if}
+				<span aria-hidden="true"> →</span>
 			</a>
 		</div>
 	</div>

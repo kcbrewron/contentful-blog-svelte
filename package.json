@@ -7,6 +7,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
+    "test:unit": "vitest run tests/unit",
+    "test:e2e": "playwright test",
     "docs": "jsdoc -c jsdoc.config.json",
     "deploy": "npm run build && npx wrangler deploy",
     "deploy:dry-run": "npm run build && npx wrangler deploy --dry-run",
@@ -16,6 +18,7 @@
     "contentful:list-types": "node scripts/list-content-types.js"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/adapter-cloudflare": "^7.2.4",
     "@sveltejs/kit": "^2.0.0",

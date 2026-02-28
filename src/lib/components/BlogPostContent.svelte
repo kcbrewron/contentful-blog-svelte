@@ -66,7 +66,7 @@
 	<!-- Featured Image -->
 	{#if featuredImageUrl}
 		<div class="w-full max-w-6xl mx-auto px-4 py-8">
-			<img src={featuredImageUrl} alt={post.fields.title} class="w-full h-auto rounded-lg shadow-lg" />
+			<img src={featuredImageUrl} alt={post.fields.featuredImage?.fields?.description || post.fields.title} class="w-full h-auto rounded-lg shadow-lg" />
 		</div>
 	{/if}
 
@@ -84,7 +84,7 @@
 
 			{#if post.fields.tags && post.fields.tags.length > 0}
 				<div class="mb-6">
-					<h3 class="text-sm font-semibold text-gray-700 mb-2">Tags:</h3>
+					<p class="text-sm font-semibold text-gray-700 mb-2">Tags:</p>
 					<div class="flex flex-wrap gap-2">
 						{#each post.fields.tags as tag}
 							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">{tag}</span>

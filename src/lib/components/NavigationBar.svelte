@@ -12,7 +12,7 @@
 </script>
 
 {#if navigationBar}
-	<nav class="bg-white shadow-md">
+	<nav class="bg-white shadow-md" aria-label="{navigationBar.fields.title} navigation">
 		<div class="container mx-auto px-4">
 			<div class="flex items-center justify-between h-16">
 				<div class="flex-shrink-0">

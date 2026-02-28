@@ -22,6 +22,7 @@
 	<NavigationBar navigationBar={page.fields.navigationBar} />
 {/if}
 
-<main>
+<!-- div instead of main — layout.svelte already provides the <main> landmark -->
+<div>
 	<SectionRenderer sections={page.fields.sections} />
-</main>
+</div>

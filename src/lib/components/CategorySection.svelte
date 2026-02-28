@@ -54,9 +54,10 @@
 			<a
 				href="/category/{category.fields.slug}"
 				class="hidden md:inline-flex items-center {titleColor} hover:underline font-medium whitespace-nowrap flex-shrink-0 pt-1"
+				aria-label="View all {category.fields.name} articles"
 			>
 				View all
-				<svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 					<path
 						stroke-linecap="round"
 						stroke-linejoin="round"

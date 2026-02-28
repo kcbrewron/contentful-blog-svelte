@@ -20,7 +20,7 @@
 
 <section class="relative {bgClass} text-white py-20">
 	{#if heroImageUrl}
-		<div class="absolute inset-0 opacity-20">
+		<div class="absolute inset-0 opacity-20" aria-hidden="true">
 			<img src={heroImageUrl} alt="" class="w-full h-full object-cover" />
 		</div>
 	{/if}
