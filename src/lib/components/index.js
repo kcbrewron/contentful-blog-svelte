@@ -6,6 +6,7 @@ export { default as CodeBlock } from './CodeBlock.svelte';
 export { default as SectionRenderer } from './SectionRenderer.svelte';
 export { default as PageRenderer } from './PageRenderer.svelte';
 export { default as CategoryHero } from './CategoryHero.svelte';
+export { default as CategoryIntro } from './CategoryIntro.svelte';
 export { default as CategoryLanding } from './CategoryLanding.svelte';
 export { default as BlogPostCard } from './BlogPostCard.svelte';
 export { default as BlogPostContent } from './BlogPostContent.svelte';

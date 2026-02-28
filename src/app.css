@@ -18,6 +18,7 @@
 /* Single source of truth — referenced by ParagraphBlock and ImageContentBlock */
 .prose {
 	color: #374151;
+	line-height: 1.65;
 }
 
 .prose h1 {
@@ -94,6 +95,163 @@
 }
 
 .prose em {
+	font-style: italic;
+}
+
+.prose h5 {
+	font-size: 1.125rem;
+	font-weight: 600;
+	line-height: 1.75rem;
+	margin-top: 1rem;
+	margin-bottom: 0.25rem;
+	color: #111827;
+}
+
+.prose h6 {
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.5rem;
+	margin-top: 0.75rem;
+	margin-bottom: 0.25rem;
+	color: #374151;
+}
+
+.prose hr {
+	border: none;
+	border-top: 1px solid #e5e7eb;
+	margin: 2rem 0;
+}
+
+.prose code {
+	font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: 0.875em;
+	background-color: #f3f4f6;
+	color: #111827;
+	padding: 0.125em 0.375em;
+	border-radius: 0.25rem;
+	border: 1px solid #e5e7eb;
+}
+
+.prose blockquote {
+	border-left: 4px solid #e5e7eb;
+	padding-left: 1.25rem;
+	margin: 1.5rem 0;
+	color: #6b7280;
+	font-style: italic;
+}
+
+.prose blockquote p {
+	margin-bottom: 0;
+}
+
+/* ─── Table styles ──────────────────────────────────────────────────────────── */
+
+.prose-table-wrapper {
+	overflow-x: auto;
+	margin: 1.5rem 0;
+	border-radius: 0.5rem;
+	border: 1px solid #e5e7eb;
+}
+
+.prose table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9375rem;
+}
+
+.prose th {
+	background-color: #f9fafb;
+	color: #111827;
+	font-weight: 600;
+	text-align: left;
+	padding: 0.75rem 1rem;
+	border-bottom: 2px solid #e5e7eb;
+	white-space: nowrap;
+}
+
+.prose td {
+	padding: 0.75rem 1rem;
+	border-bottom: 1px solid #f3f4f6;
+	color: #374151;
+	vertical-align: top;
+}
+
+.prose tr:last-child td {
+	border-bottom: none;
+}
+
+.prose tbody tr:nth-child(even) {
+	background-color: #f3f4f6;
+}
+
+/* Strip paragraph margins inside table cells so row height stays compact */
+.prose th p,
+.prose td p {
+	margin: 0;
+}
+
+/* ─── Prism syntax highlighting theme ──────────────────────────────────────── */
+/* Matches the existing bg-gray-800 dark code block background */
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #6b7280;
+	font-style: italic;
+}
+
+.token.punctuation {
+	color: #9ca3af;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #fdba74;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #86efac;
+}
+
+.token.operator,
+.token.entity,
+.token.variable {
+	color: #f9a8d4;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #93c5fd;
+}
+
+.token.function,
+.token.class-name {
+	color: #fde68a;
+}
+
+.token.regex,
+.token.important {
+	color: #fdba74;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+
+.token.italic {
 	font-style: italic;
 }
 

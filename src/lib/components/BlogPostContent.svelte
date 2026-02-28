@@ -1,5 +1,6 @@
 <script>
 	import SectionRenderer from './SectionRenderer.svelte';
+	import { page } from '$app/stores';
 
 	/**
 	 * @type {{ fields: { title: string, excerpt: string, featuredImage: any, publishedDate: string, updatedDate?: string, estimatedReadingTime: number, author: any, category: any, content: Array<any>, tags?: Array<string>, seoTitle: string, seoDescription: string } }}
@@ -28,6 +29,8 @@
 <svelte:head>
 	<title>{post.fields.seoTitle}</title>
 	<meta name="description" content={post.fields.seoDescription} />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content={$page.url.href} />
 	<meta property="og:title" content={post.fields.title} />
 	<meta property="og:description" content={post.fields.excerpt} />
 	{#if featuredImageUrl}
@@ -84,12 +87,8 @@
 
 			{#if post.fields.tags && post.fields.tags.length > 0}
 				<div class="mb-6">
-					<p class="text-sm font-semibold text-gray-700 mb-2">Tags:</p>
-					<div class="flex flex-wrap gap-2">
-						{#each post.fields.tags as tag}
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">{tag}</span>
-						{/each}
-					</div>
+					<p class="text-sm font-semibold text-gray-700 mb-1">Tags</p>
+					<p class="text-sm text-gray-600">{post.fields.tags.join(' · ')}</p>
 				</div>
 			{/if}
 

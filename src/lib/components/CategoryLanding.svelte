@@ -1,5 +1,6 @@
 <script>
 	import CategoryHero from './CategoryHero.svelte';
+	import CategoryIntro from './CategoryIntro.svelte';
 	import BlogPostCard from './BlogPostCard.svelte';
 	import SectionRenderer from './SectionRenderer.svelte';
 
@@ -20,6 +21,8 @@
 </svelte:head>
 
 <CategoryHero {category} />
+
+<CategoryIntro {category} />
 
 <!-- Featured Posts Section -->
 {#if category.fields.featuredPosts && category.fields.featuredPosts.length > 0}

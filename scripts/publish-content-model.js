@@ -129,12 +129,22 @@ async function publishContentModel() {
                   'heading-1',
                   'heading-2',
                   'heading-3',
+                  'heading-4',
+                  'heading-5',
+                  'heading-6',
                   'ordered-list',
                   'unordered-list',
+                  'blockquote',
+                  'hr',
+                  'table',
+                  'table-row',
+                  'table-cell',
+                  'table-header-cell',
                   'hyperlink',
                   'bold',
                   'italic',
                   'underline',
+                  'code',
                   'paragraph'
                 ]
               }
@@ -186,12 +196,22 @@ async function publishContentModel() {
                   'heading-1',
                   'heading-2',
                   'heading-3',
+                  'heading-4',
+                  'heading-5',
+                  'heading-6',
                   'ordered-list',
                   'unordered-list',
+                  'blockquote',
+                  'hr',
+                  'table',
+                  'table-row',
+                  'table-cell',
+                  'table-header-cell',
                   'hyperlink',
                   'bold',
                   'italic',
                   'underline',
+                  'code',
                   'paragraph'
                 ]
               }
@@ -249,6 +269,60 @@ async function publishContentModel() {
             name: 'Code Snippet',
             type: 'Text',
             required: true
+          }
+        ]
+      },
+      {
+        id: 'categoryTopicLink',
+        name: 'Category Topic Link',
+        description: 'A single curated link inside a category topic section',
+        displayField: 'label',
+        fields: [
+          {
+            id: 'label',
+            name: 'Label',
+            type: 'Symbol',
+            required: true,
+            validations: [{ size: { max: 100 } }]
+          },
+          {
+            id: 'url',
+            name: 'URL',
+            type: 'Symbol',
+            required: true
+          }
+        ]
+      },
+      {
+        id: 'categoryTopicSection',
+        name: 'Category Topic Section',
+        description: 'A named group of curated links on a category hub page',
+        displayField: 'title',
+        fields: [
+          {
+            id: 'title',
+            name: 'Title',
+            type: 'Symbol',
+            required: true,
+            validations: [{ size: { max: 80 } }]
+          },
+          {
+            id: 'description',
+            name: 'Description',
+            type: 'Text',
+            required: false,
+            validations: [{ size: { max: 300 } }]
+          },
+          {
+            id: 'links',
+            name: 'Links',
+            type: 'Array',
+            required: false,
+            items: {
+              type: 'Link',
+              linkType: 'Entry',
+              validations: [{ linkContentType: ['categoryTopicLink'] }]
+            }
           }
         ]
       },
@@ -364,6 +438,45 @@ async function publishContentModel() {
               ]
             },
             required: false
+          },
+          {
+            id: 'introContent',
+            name: 'Intro Content',
+            type: 'RichText',
+            required: false,
+            validations: [
+              {
+                enabledNodeTypes: [
+                  'heading-2',
+                  'heading-3',
+                  'heading-4',
+                  'paragraph',
+                  'unordered-list',
+                  'ordered-list',
+                  'blockquote',
+                  'hr',
+                  'table',
+                  'table-row',
+                  'table-cell',
+                  'table-header-cell',
+                  'hyperlink',
+                  'bold',
+                  'italic',
+                  'code'
+                ]
+              }
+            ]
+          },
+          {
+            id: 'topicSections',
+            name: 'Topic Sections',
+            type: 'Array',
+            required: false,
+            items: {
+              type: 'Link',
+              linkType: 'Entry',
+              validations: [{ linkContentType: ['categoryTopicSection'] }]
+            }
           }
         ]
       },

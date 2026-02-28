@@ -24,7 +24,7 @@
 			<div class="flex items-center justify-between h-16">
 				<div class="flex-shrink-0">
 					<a href="/" class="flex items-center group" on:click={closeMenu}>
-						<span class="text-xl font-bold tracking-tight text-gray-900 font-mono">ronnelson<span class="text-blue-600 font-light">.dev</span></span>
+						<span class="text-xl tracking-tight font-mono"><span class="text-blue-600 font-bold">ron</span><span class="text-gray-900 font-bold">nelson</span><span class="text-gray-500 font-light">.dev</span></span>
 					</a>
 				</div>
 				<div class="hidden md:block">
