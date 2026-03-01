@@ -8,7 +8,7 @@
 		description:
 			'Practical insights on edge-native architecture, distributed systems design, AI workloads, and building on the Cloudflare platform.',
 		ctaText: 'Explore Articles',
-		ctaUrl: '#technology'
+		ctaUrl: '#Cloud%20&%20Software%20Architecture'
 	};
 
 	/**
