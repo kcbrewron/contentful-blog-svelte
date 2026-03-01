@@ -38,7 +38,8 @@ import {
 	getCategoryPostCounts,
 	getAllCategories,
 	getCategoryBySlug,
-	getBlogPostBySlug
+	getBlogPostBySlug,
+	getAllBlogSlugs
 } from '../../src/lib/contentful/queries.js';
 
 // ---------------------------------------------------------------------------
@@ -436,6 +437,47 @@ describe('getBlogPostBySlug', () => {
 
 		await getBlogPostBySlug('any-slug', true);
 
+		expect(getContentfulClient).toHaveBeenCalledWith({ preview: true });
+	});
+});
+
+// ---------------------------------------------------------------------------
+// getAllBlogSlugs
+// ---------------------------------------------------------------------------
+describe('getAllBlogSlugs', () => {
+	it('returns an array of slug strings from the Contentful response', async () => {
+		const mockEntries = [
+			{ fields: { slug: 'first-post' } },
+			{ fields: { slug: 'second-post' } }
+		];
+
+		const mockGetEntries = getContentfulClient().getEntries;
+		mockGetEntries.mockResolvedValueOnce({ items: mockEntries });
+
+		const result = await getAllBlogSlugs();
+		expect(result).toEqual(['first-post', 'second-post']);
+	});
+
+	it('requests only the slug field and uses blogPost content type', async () => {
+		const mockGetEntries = getContentfulClient().getEntries;
+		mockGetEntries.mockResolvedValueOnce({ items: [] });
+
+		await getAllBlogSlugs();
+
+		expect(mockGetEntries).toHaveBeenCalledWith(
+			expect.objectContaining({
+				content_type: 'blogPost',
+				select: 'fields.slug',
+				limit: 1000
+			})
+		);
+	});
+
+	it('passes preview flag through to client when asked', async () => {
+		const mockGetEntries = getContentfulClient().getEntries;
+		mockGetEntries.mockResolvedValueOnce({ items: [] });
+
+		await getAllBlogSlugs(true);
 		expect(getContentfulClient).toHaveBeenCalledWith({ preview: true });
 	});
 });

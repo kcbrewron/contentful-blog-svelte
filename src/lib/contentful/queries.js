@@ -199,3 +199,24 @@ export async function getCategoryPostCounts(preview = false) {
 		return {};
 	}
 }
+/**
+ * Fetches all blog post slugs
+ * @param {boolean} preview - Use preview API
+ * @returns {Promise<Array<string>>} Array of slug strings
+ */
+ export async function getAllBlogSlugs(preview = false) {
+ 	const client = getContentfulClient({ preview });
+ 
+ 	try {
+ 		const response = await client.getEntries({
+ 			content_type: 'blogPost',
+ 			select: 'fields.slug',
+ 			limit: 1000
+ 		});
+ 
+ 		return response.items.map((item) => item.fields.slug);
+ 	} catch (error) {
+ 		console.error('Error fetching all blog slugs:', error);
+ 		throw error;
+ 	}
+ }
