@@ -1,4 +1,5 @@
 <script>
+	import { buildContentfulImageUrl, buildContentfulSrcset } from '$lib/contentful/imageUtils.js';
 	import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 	import { richTextOptions } from '$lib/contentful/richTextOptions.js';
 
@@ -26,7 +27,15 @@
 			{#if imagePosition === 'left'}
 				<div class="order-1">
 					{#if imageUrl}
-						<img src={imageUrl} alt={imageAlt} class="w-full h-auto rounded-lg shadow-lg" />
+						<img
+							src={buildContentfulImageUrl(imageUrl, { width: 800 })}
+							srcset={buildContentfulSrcset(imageUrl, [400, 800])}
+							sizes="(min-width:768px) 50vw, 100vw"
+							alt={imageAlt}
+							loading="lazy"
+							decoding="async"
+							class="w-full h-auto rounded-lg shadow-lg"
+						/>
 					{/if}
 				</div>
 				{#if htmlContent}
@@ -42,11 +51,18 @@
 				{/if}
 				<div class="order-1 md:order-2">
 					{#if imageUrl}
-						<img src={imageUrl} alt={imageAlt} class="w-full h-auto rounded-lg shadow-lg" />
+						<img
+							src={buildContentfulImageUrl(imageUrl, { width: 800 })}
+							srcset={buildContentfulSrcset(imageUrl, [400, 800])}
+							sizes="(min-width:768px) 50vw, 100vw"
+							alt={imageAlt}
+							loading="lazy"
+							decoding="async"
+							class="w-full h-auto rounded-lg shadow-lg"
+						/>
 					{/if}
 				</div>
 			{/if}
 		</div>
 	</div>
 </section>
-
