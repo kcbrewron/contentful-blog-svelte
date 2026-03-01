@@ -102,7 +102,7 @@
 					rel={isExternalLink ? 'noopener noreferrer' : undefined}
 				>
 					{isExternalLink ? 'Read on ' + platform : 'Read more'}
-					{#if isExternalLink}<span class="sr-only">(opens in new tab)</span>{/if}
+					<span class="sr-only">{isExternalLink ? '(opens in new tab)' : post.fields.title}</span>
 					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 						<path
 							stroke-linecap="round"
@@ -172,7 +172,7 @@
 				rel={isExternalLink ? 'noopener noreferrer' : undefined}
 			>
 				{isExternalLink ? 'Read on ' + platform : 'Read more'}
-				{#if isExternalLink}<span class="sr-only">(opens in new tab)</span>{/if}
+				<span class="sr-only">{isExternalLink ? '(opens in new tab)' : post.fields.title}</span>
 				<span aria-hidden="true"> →</span>
 			</a>
 		</div>
