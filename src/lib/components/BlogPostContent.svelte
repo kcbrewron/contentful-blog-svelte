@@ -1,4 +1,5 @@
 <script>
+	import { buildContentfulImageUrl, buildContentfulSrcset } from '$lib/contentful/imageUtils.js';
 	import SectionRenderer from './SectionRenderer.svelte';
 	import { page } from '$app/stores';
 
@@ -24,6 +25,8 @@
 				day: 'numeric'
 		  })
 		: null;
+	$: featuredImageWidth = post.fields.featuredImage?.fields?.file?.details?.image?.width;
+	$: featuredImageHeight = post.fields.featuredImage?.fields?.file?.details?.image?.height;
 </script>
 
 <svelte:head>
@@ -52,7 +55,17 @@
 
 			<div class="flex items-center gap-6 text-sm text-gray-600">
 				{#if authorImage}
-					<img src={authorImage} alt={authorName} class="w-12 h-12 rounded-full" />
+					<img
+						src={buildContentfulImageUrl(authorImage, { width: 96, height: 96, fit: 'thumb', focus: 'faces' })}
+						srcset={buildContentfulSrcset(authorImage, [48, 96], { fit: 'thumb', focus: 'faces' })}
+						sizes="48px"
+						alt={authorName}
+						width="48"
+						height="48"
+						loading="lazy"
+						decoding="async"
+						class="w-12 h-12 rounded-full"
+					/>
 				{/if}
 				<div>
 					<div class="font-medium text-gray-900">{authorName}</div>
@@ -69,7 +82,16 @@
 	<!-- Featured Image -->
 	{#if featuredImageUrl}
 		<div class="w-full max-w-6xl mx-auto px-4 py-8">
-			<img src={featuredImageUrl} alt={post.fields.featuredImage?.fields?.description || post.fields.title} class="w-full h-auto rounded-lg shadow-lg" />
+			<img
+				src={buildContentfulImageUrl(featuredImageUrl, { width: 1200 })}
+				srcset={buildContentfulSrcset(featuredImageUrl, [800, 1200, 1600])}
+				sizes="(min-width:1280px) 1152px, 100vw"
+				alt={post.fields.featuredImage?.fields?.description || post.fields.title}
+				width={featuredImageWidth}
+				height={featuredImageHeight}
+				fetchpriority="high"
+				class="w-full h-auto rounded-lg shadow-lg"
+			/>
 		</div>
 	{/if}
 
