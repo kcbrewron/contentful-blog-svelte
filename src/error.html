@@ -2,9 +2,170 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>%sveltekit.error.message%</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="noindex" />
+		<title>%sveltekit.error.message% | ronnelson.dev</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+		<style>
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', system-ui, sans-serif;
+				background: #f9fafb;
+				color: #111827;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+			}
+
+			nav {
+				background: #fff;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+				padding: 0 1rem;
+			}
+
+			nav .inner {
+				max-width: 1200px;
+				margin: 0 auto;
+				height: 4rem;
+				display: flex;
+				align-items: center;
+			}
+
+			nav a {
+				font-family: 'JetBrains Mono', monospace;
+				font-size: 1.1rem;
+				text-decoration: none;
+			}
+
+			nav .brand-ron { color: #2563eb; font-weight: 700; }
+			nav .brand-nelson { color: #111827; font-weight: 700; }
+			nav .brand-tld { color: #6b7280; font-weight: 300; }
+
+			main {
+				flex: 1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 4rem 1rem;
+			}
+
+			.container {
+				max-width: 640px;
+				width: 100%;
+				text-align: center;
+			}
+
+			.status-code {
+				font-family: 'JetBrains Mono', monospace;
+				font-size: clamp(5rem, 20vw, 9rem);
+				font-weight: 700;
+				color: #2563eb;
+				line-height: 1;
+				margin-bottom: 1.5rem;
+				user-select: none;
+			}
+
+			h1 {
+				font-size: clamp(1.5rem, 5vw, 2rem);
+				font-weight: 700;
+				color: #111827;
+				margin-bottom: 1rem;
+			}
+
+			.body-text {
+				font-size: 1.1rem;
+				color: #4b5563;
+				line-height: 1.6;
+				margin-bottom: 2rem;
+			}
+
+			.quip-box {
+				background: #111827;
+				border-radius: 0.5rem;
+				padding: 1rem 1.5rem;
+				margin-bottom: 2.5rem;
+				text-align: left;
+			}
+
+			.quip-text {
+				font-family: 'JetBrains Mono', monospace;
+				font-size: 0.85rem;
+				color: #f87171;
+				line-height: 1.5;
+			}
+
+			.quip-sub {
+				font-family: 'JetBrains Mono', monospace;
+				font-size: 0.75rem;
+				color: #6b7280;
+				margin-top: 0.25rem;
+			}
+
+			.actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+			.btn-primary {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				background: #2563eb;
+				color: #fff;
+				font-weight: 600;
+				font-size: 0.95rem;
+				padding: 0.75rem 1.5rem;
+				border-radius: 0.5rem;
+				text-decoration: none;
+				transition: background 0.15s;
+			}
+
+			.btn-primary:hover { background: #1d4ed8; }
+
+			footer {
+				background: #1f2937;
+				color: #9ca3af;
+				text-align: center;
+				padding: 2rem 1rem;
+				font-size: 0.875rem;
+			}
+		</style>
 	</head>
 	<body>
-		<h1>Error: %sveltekit.error.message%</h1>
+		<nav>
+			<div class="inner">
+				<a href="/">
+					<span class="brand-ron">ron</span><span class="brand-nelson">nelson</span><span class="brand-tld">.dev</span>
+				</a>
+			</div>
+		</nav>
+
+		<main>
+			<div class="container">
+				<p class="status-code" aria-hidden="true">%sveltekit.error.message%</p>
+
+				<h1>Something went seriously wrong.</h1>
+
+				<p class="body-text">
+					The server encountered a condition it couldn't recover from — bad enough that even our
+					error handler needed a hand. Everything useful has been logged and someone will look at it.
+				</p>
+
+				<div class="quip-box">
+					<p class="quip-text">FatalError: The error page itself has entered the chat</p>
+					<p class="quip-sub">at ronnelson.dev (somewhere well above the stack limit)</p>
+				</div>
+
+				<div class="actions">
+					<a href="/" class="btn-primary">
+						← Back to home
+					</a>
+				</div>
+			</div>
+		</main>
+
+		<footer>
+			<p>&copy; ronnelson.dev</p>
+		</footer>
 	</body>
 </html>
