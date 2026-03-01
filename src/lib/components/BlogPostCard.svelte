@@ -1,4 +1,5 @@
 <script>
+	import { buildContentfulImageUrl, buildContentfulSrcset } from '$lib/contentful/imageUtils.js';
 	/**
 	 * @type {{ fields: { title: string, slug?: string, externalUrl?: string, excerpt: string, featuredImage: any, publishedDate: string, estimatedReadingTime?: number, author: any, category: any, platform?: string }, sys: { contentType: { sys: { id: string } } } }}
 	 */
@@ -39,8 +40,12 @@
 				rel={isExternalLink ? 'noopener noreferrer' : undefined}
 			>
 				<img
-					src={featuredImageUrl}
+					src={buildContentfulImageUrl(featuredImageUrl, { width: 800 })}
+					srcset={buildContentfulSrcset(featuredImageUrl, [400, 800])}
+					sizes="(min-width:768px) 40vw, 100vw"
 					alt=""
+					loading="lazy"
+					decoding="async"
 					class="w-full h-48 md:h-full object-cover hover:opacity-90 transition-opacity"
 				/>
 			</a>
@@ -123,8 +128,12 @@
 		<!-- Image link is hidden from a11y tree — title link below is the primary link -->
 		<a href={postUrl} class="block" tabindex="-1" aria-hidden="true" target={isExternalLink ? '_blank' : undefined} rel={isExternalLink ? 'noopener noreferrer' : undefined}>
 			<img
-				src={featuredImageUrl}
+				src={buildContentfulImageUrl(featuredImageUrl, { width: 800 })}
+				srcset={buildContentfulSrcset(featuredImageUrl, [400, 800])}
+				sizes="(min-width:768px) 40vw, 100vw"
 				alt=""
+				loading="lazy"
+				decoding="async"
 				class="w-full h-48 object-cover hover:opacity-90 transition-opacity"
 			/>
 		</a>
