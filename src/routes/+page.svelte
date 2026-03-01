@@ -16,10 +16,10 @@
 </script>
 
 <svelte:head>
-	<title>Ron Nelson - Software Engineer & Technical Leader</title>
+	<title>Ron Nelson - Solution Architect | Distributed Systems & Edge Architecture</title>
 	<meta
 		name="description"
-		content="Sharing insights on software development, leadership, and the journey of continuous learning."
+		content="Deep dives into cloud architecture, edge computing with Cloudflare Workers, distributed systems design, and applied AI systems."
 	/>
 </svelte:head>
 
@@ -31,7 +31,7 @@
 		{category}
 		posts={data.categoryPosts[category.sys.id] || []}
 		limit={2}
-		id={index === 0 ? 'technology' : ''}
+		id={index === 0 ? 'Cloud & Software Architecture' : ''}
 	/>
 {/each}
 
