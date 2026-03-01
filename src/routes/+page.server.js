@@ -42,7 +42,15 @@ export async function load({ url }) {
 		// Extract featured images from recent posts (up to 4 for collage)
 		const featuredImages = recentPosts
 			.slice(0, 4)
-			.map((post) => post.fields.featuredImage?.fields?.file?.url)
+			.map((post) => {
+				const file = post.fields.featuredImage?.fields?.file;
+				if (!file?.url) return null;
+				return {
+					url: file.url,
+					width: file.details?.image?.width ?? null,
+					height: file.details?.image?.height ?? null
+				};
+			})
 			.filter(Boolean);
 
 		return {
