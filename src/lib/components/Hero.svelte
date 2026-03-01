@@ -1,4 +1,6 @@
 <script>
+	import { buildContentfulImageUrl, buildContentfulSrcset } from '$lib/contentful/imageUtils.js';
+
 	/**
 	 * @type {{ title?: string, subtitle?: string, description?: string, ctaText?: string, ctaUrl?: string }}
 	 */
@@ -17,7 +19,7 @@
 	export let categories = [];
 
 	/**
-	 * @type {Array<string>}
+	 * @type {Array<{url: string, width: number|null, height: number|null}>}
 	 */
 	export let featuredImages = [];
 </script>
@@ -26,11 +28,18 @@
 	<!-- Image Collage Background -->
 	{#if featuredImages.length > 0}
 		<div class="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-2" aria-hidden="true">
-			{#each featuredImages.slice(0, 4) as imageUrl, index}
+			{#each featuredImages.slice(0, 4) as image, index}
 				<div class="relative overflow-hidden animate-fade-in" style="animation-delay: {index * 100}ms">
 					<img
-						src={imageUrl}
+						src={buildContentfulImageUrl(image.url, { width: 800 })}
+						srcset={buildContentfulSrcset(image.url, [400, 800, 1200])}
+						sizes="(min-width:1024px) 50vw, 100vw"
 						alt=""
+						width={image.width ?? undefined}
+						height={image.height ?? undefined}
+						fetchpriority={index === 0 ? 'high' : undefined}
+						loading={index === 0 ? undefined : 'lazy'}
+						decoding={index === 0 ? undefined : 'async'}
 						class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
 					/>
 				</div>
