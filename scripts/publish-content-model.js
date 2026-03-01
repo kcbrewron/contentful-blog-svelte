@@ -477,6 +477,13 @@ async function publishContentModel() {
               linkType: 'Entry',
               validations: [{ linkContentType: ['categoryTopicSection'] }]
             }
+          },
+          {
+            id: 'displayOrder',
+            name: 'Display Order',
+            type: 'Integer',
+            required: true,
+            validations: [{ range: { min: 1, max: 99 } }]
           }
         ]
       },

@@ -43,7 +43,7 @@
 	<header class="py-12 bg-gray-50">
 		<div class="container mx-auto px-4 max-w-4xl">
 			<div class="mb-6">
-				<a href="/category/{categorySlug}" class="text-blue-600 hover:underline font-medium">
+				<a href="/{categorySlug}" class="text-blue-600 hover:underline font-medium">
 					{categoryName}
 				</a>
 			</div>
@@ -93,7 +93,7 @@
 			{/if}
 
 			<div class="flex items-center justify-between pt-6 border-t border-gray-200">
-				<a href="/category/{categorySlug}" class="text-blue-600 hover:underline">
+				<a href="/{categorySlug}" class="text-blue-600 hover:underline">
 					← Back to {categoryName}
 				</a>
 			</div>

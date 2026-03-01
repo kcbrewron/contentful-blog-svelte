@@ -37,7 +37,7 @@
 						</a>
 						{#each data.categories as category}
 							<a
-								href="/category/{category.fields.slug}"
+								href="/{category.fields.slug}"
 								class="text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150"
 							>
 								{category.fields.name}
@@ -84,7 +84,7 @@
 					</a>
 					{#each data.categories as category}
 						<a
-							href="/category/{category.fields.slug}"
+							href="/{category.fields.slug}"
 							class="block text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150"
 							on:click={closeMenu}
 						>

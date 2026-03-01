@@ -1,33 +1,27 @@
 import { getBlogPostBySlug } from '$lib/contentful/queries.js';
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 
 /**
- * Load blog post by slug
+ * Redirect legacy /blog/{slug} URLs to the new /{categorySlug}/{slug} structure.
  * @param {Object} params
  * @param {Object} params.params - Route parameters
- * @param {string} params.params.slug - Blog post slug
+ * @param {string} params.params.slug - Post slug
  * @param {Object} params.url - Request URL
- * @returns {Promise<{post: Object}>}
  */
 export async function load({ params, url }) {
 	const preview = url.searchParams.get('preview') === 'true';
 
-	try {
-		const post = await getBlogPostBySlug(params.slug, preview);
+	const post = await getBlogPostBySlug(params.slug, preview);
 
-		if (!post) {
-			throw error(404, {
-				message: 'Blog post not found'
-			});
-		}
-
-		return {
-			post
-		};
-	} catch (err) {
-		console.error('Error loading blog post:', err);
-		throw error(500, {
-			message: 'Failed to load blog post'
-		});
+	if (!post) {
+		throw error(404, { message: 'Blog post not found' });
 	}
+
+	const categorySlug = post.fields.category?.fields?.slug;
+	if (!categorySlug) {
+		throw error(404, { message: 'Blog post has no category' });
+	}
+
+	const newUrl = `/${categorySlug}/${params.slug}${preview ? '?preview=true' : ''}`;
+	throw redirect(301, newUrl);
 }

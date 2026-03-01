@@ -67,7 +67,7 @@
 				<div class="flex flex-wrap justify-center gap-3 mb-8 animate-slide-up" style="animation-delay: 200ms">
 					{#each categories as category}
 						<a
-							href="/category/{category.slug}"
+							href="/{category.slug}"
 							class="px-5 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 shadow-lg"
 						>
 							{category.name}

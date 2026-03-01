@@ -1,29 +1,29 @@
-import { getAllCategories, getAllBlogSlugs } from '$lib/contentful/queries.js';
+import { getAllCategories, getAllBlogPostsForSitemap } from '$lib/contentful/queries.js';
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function GET() {
   const base = 'https://www.ronnelson.dev';
 
-  // Gather dynamic paths
-  const [categories, slugs] = await Promise.all([
+  const [categories, posts] = await Promise.all([
     getAllCategories(),
-    getAllBlogSlugs()
+    getAllBlogPostsForSitemap()
   ]);
 
   const urls = new Set();
 
-  // always include root
+  // Root
   urls.add(base);
-  // include categories
+
+  // Category landing pages at /{categorySlug}
   categories.forEach((cat) => {
     if (cat.fields?.slug) {
-      urls.add(`${base}/category/${cat.fields.slug}`);
+      urls.add(`${base}/${cat.fields.slug}`);
     }
   });
 
-  // include posts
-  slugs.forEach((slug) => {
-    urls.add(`${base}/blog/${slug}`);
+  // Article pages at /{categorySlug}/{articleSlug}
+  posts.forEach(({ slug, categorySlug }) => {
+    urls.add(`${base}/${categorySlug}/${slug}`);
   });
 
   const xml =

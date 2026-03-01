@@ -42,7 +42,7 @@
 					{@const postCount = categoryPostCounts[category.sys.id] || 0}
 
 					<a
-						href="/category/{category.fields.slug}"
+						href="/{category.fields.slug}"
 						class="group block bg-gradient-to-br {gradientClass} {hoverClass} text-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 transform hover:scale-105"
 					>
 						<div class="p-8">

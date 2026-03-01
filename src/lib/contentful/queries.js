@@ -108,6 +108,7 @@ export async function getAllCategories(preview = false) {
 	try {
 		const response = await client.getEntries({
 			content_type: 'category',
+			order: 'fields.displayOrder',
 			include: 1
 		});
 
@@ -204,19 +205,47 @@ export async function getCategoryPostCounts(preview = false) {
  * @param {boolean} preview - Use preview API
  * @returns {Promise<Array<string>>} Array of slug strings
  */
- export async function getAllBlogSlugs(preview = false) {
- 	const client = getContentfulClient({ preview });
- 
- 	try {
- 		const response = await client.getEntries({
- 			content_type: 'blogPost',
- 			select: 'fields.slug',
- 			limit: 1000
- 		});
- 
- 		return response.items.map((item) => item.fields.slug);
- 	} catch (error) {
- 		console.error('Error fetching all blog slugs:', error);
- 		throw error;
- 	}
- }
+export async function getAllBlogSlugs(preview = false) {
+	const client = getContentfulClient({ preview });
+
+	try {
+		const response = await client.getEntries({
+			content_type: 'blogPost',
+			select: 'fields.slug',
+			limit: 1000
+		});
+
+		return response.items.map((item) => item.fields.slug);
+	} catch (error) {
+		console.error('Error fetching all blog slugs:', error);
+		throw error;
+	}
+}
+
+/**
+ * Fetches all blog posts with their category slugs for sitemap generation
+ * @param {boolean} preview - Use preview API
+ * @returns {Promise<Array<{slug: string, categorySlug: string}>>}
+ */
+export async function getAllBlogPostsForSitemap(preview = false) {
+	const client = getContentfulClient({ preview });
+
+	try {
+		const response = await client.getEntries({
+			content_type: 'blogPost',
+			select: 'fields.slug,fields.category',
+			include: 1,
+			limit: 1000
+		});
+
+		return response.items
+			.map((item) => ({
+				slug: item.fields.slug,
+				categorySlug: item.fields.category?.fields?.slug
+			}))
+			.filter((item) => item.slug && item.categorySlug);
+	} catch (error) {
+		console.error('Error fetching blog posts for sitemap:', error);
+		throw error;
+	}
+}

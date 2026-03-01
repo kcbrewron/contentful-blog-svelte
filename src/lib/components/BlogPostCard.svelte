@@ -10,7 +10,7 @@
 	export let variant = 'vertical';
 
 	$: isExternal = post.sys.contentType.sys.id === 'externalArticle';
-	$: postUrl = isExternal ? post.fields.externalUrl : `/blog/${post.fields.slug}`;
+	$: postUrl = isExternal ? post.fields.externalUrl : `/${categorySlug}/${post.fields.slug}`;
 	$: isExternalLink = isExternal;
 	$: featuredImageUrl = post.fields.featuredImage?.fields?.file?.url;
 	$: authorName = post.fields.author?.fields?.name || 'Unknown';
@@ -49,7 +49,7 @@
 		<div class="p-6 flex-1 flex flex-col justify-between">
 			<div>
 				<div class="flex items-center gap-4 text-sm text-gray-600 mb-3">
-					<a href="/category/{categorySlug}" class="text-blue-600 hover:underline font-medium">
+					<a href="/{categorySlug}" class="text-blue-600 hover:underline font-medium">
 						{categoryName}
 					</a>
 					<span aria-hidden="true">•</span>
@@ -132,7 +132,7 @@
 
 	<div class="p-6">
 		<div class="flex items-center gap-4 text-sm text-gray-600 mb-3">
-			<a href="/category/{categorySlug}" class="text-blue-600 hover:underline font-medium">
+			<a href="/{categorySlug}" class="text-blue-600 hover:underline font-medium">
 				{categoryName}
 			</a>
 			<span aria-hidden="true">•</span>

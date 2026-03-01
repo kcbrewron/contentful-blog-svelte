@@ -39,16 +39,6 @@ export async function load({ url }) {
 			categoryPosts[categoryId] = posts;
 		});
 
-		// Explicit category order: tech → leadership → life
-		const categoryOrder = ['tech', 'leadership', 'life'];
-		categories.sort((a, b) => {
-			const aIndex = categoryOrder.indexOf(a.fields.slug);
-			const bIndex = categoryOrder.indexOf(b.fields.slug);
-			const aRank = aIndex === -1 ? categoryOrder.length : aIndex;
-			const bRank = bIndex === -1 ? categoryOrder.length : bIndex;
-			return aRank - bRank;
-		});
-
 		// Extract featured images from recent posts (up to 4 for collage)
 		const featuredImages = recentPosts
 			.slice(0, 4)

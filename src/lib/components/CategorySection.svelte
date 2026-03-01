@@ -52,7 +52,7 @@
 				<p class="text-gray-600">{category.fields.description}</p>
 			</div>
 			<a
-				href="/category/{category.fields.slug}"
+				href="/{category.fields.slug}"
 				class="hidden md:inline-flex items-center {titleColor} hover:underline font-medium whitespace-nowrap flex-shrink-0 pt-1"
 				aria-label="View all {category.fields.name} articles"
 			>
