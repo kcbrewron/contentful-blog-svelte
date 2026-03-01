@@ -6,7 +6,7 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "vitest",
+    "test": "vitest run tests/unit",
     "test:unit": "vitest run tests/unit",
     "test:e2e": "playwright test",
     "docs": "jsdoc -c jsdoc.config.json",

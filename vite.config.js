@@ -20,7 +20,8 @@ export default defineConfig({
 		// source files can be imported without the full SvelteKit build pipeline.
 		alias: {
 			$lib: '/src/lib',
-			'$env/dynamic/private': '/tests/unit/__mocks__/env.js'
+			'$env/dynamic/private': '/tests/unit/__mocks__/env.js',
+			'$env/static/private': '/tests/unit/__mocks__/env.js'
 		}
 	}
 });
