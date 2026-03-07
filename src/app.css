@@ -193,68 +193,68 @@
 /* ─── Dark prose variant ────────────────────────────────────────────────────── */
 /* Used inside the dark prose well in BlogPostContent */
 
-.prose-dark {
-  color: #e4e4e7; /* zinc-200 */
+.prose.prose-dark {
+	color: #e4e4e7; /* zinc-200 */
 }
 
-.prose-dark h1,
-.prose-dark h2,
-.prose-dark h3,
-.prose-dark h4,
-.prose-dark h5 {
-  color: #ffffff;
+.prose.prose-dark h1,
+.prose.prose-dark h2,
+.prose.prose-dark h3,
+.prose.prose-dark h4,
+.prose.prose-dark h5 {
+	color: #ffffff;
 }
 
-.prose-dark h6 {
-  color: #d4d4d8; /* zinc-300 */
+.prose.prose-dark h6 {
+	color: #d4d4d8; /* zinc-300 */
 }
 
-.prose-dark a {
-  color: #818cf8; /* indigo-400 */
-  text-decoration: underline;
+.prose.prose-dark a {
+	color: #818cf8; /* indigo-400 */
+	text-decoration: underline;
 }
 
-.prose-dark a:hover {
-  color: #a5b4fc; /* indigo-300 */
-  text-decoration: none;
+.prose.prose-dark a:hover {
+	color: #a5b4fc; /* indigo-300 */
+	text-decoration: none;
 }
 
-.prose-dark strong {
-  color: #f4f4f5; /* zinc-100 */
+.prose.prose-dark strong {
+	color: #f4f4f5; /* zinc-100 */
 }
 
-.prose-dark hr {
-  border-top-color: #3f3f46; /* zinc-700 */
+.prose.prose-dark hr {
+	border-top-color: #3f3f46; /* zinc-700 */
 }
 
-.prose-dark code {
-  background-color: #1e1e2e;
-  color: #e4e4e7;
-  border-color: #3f3f46;
+.prose.prose-dark code {
+	background-color: #1e1e2e;
+	color: #e4e4e7;
+	border-color: #3f3f46;
 }
 
-.prose-dark blockquote {
-  border-left-color: #6366f1; /* indigo-500 */
-  color: #d4d4d8; /* zinc-300 */
+.prose.prose-dark blockquote {
+	border-left-color: #6366f1; /* indigo-500 */
+	color: #d4d4d8; /* zinc-300 */
 }
 
-.prose-dark th {
-  background-color: #1e293b; /* slate-800 */
-  color: #f4f4f5;
-  border-bottom-color: #3f3f46;
+.prose.prose-dark th {
+	background-color: #1e293b; /* slate-800 */
+	color: #f4f4f5;
+	border-bottom-color: #3f3f46;
 }
 
-.prose-dark td {
-  color: #d4d4d8;
-  border-bottom-color: #27272a; /* zinc-800 */
+.prose.prose-dark td {
+	color: #d4d4d8;
+	border-bottom-color: #27272a; /* zinc-800 */
 }
 
-.prose-dark tbody tr:nth-child(even) {
-  background-color: #1e293b;
+.prose.prose-dark tbody tr:nth-child(even) {
+	background-color: #1e293b;
 }
 
-.prose-dark .prose-table-wrapper {
-  border-color: #3f3f46;
+.prose.prose-dark .prose-table-wrapper {
+	border-color: #3f3f46;
 }
 
 /* ─── Prism syntax highlighting theme ──────────────────────────────────────── */
