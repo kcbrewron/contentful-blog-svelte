@@ -117,21 +117,7 @@
 			href="/{categorySlug}"
 			class="mt-6 inline-flex items-center gap-1 text-sm text-indigo-400 hover:text-indigo-300 transition-colors"
 		>
-			View all {categoryName} articles
-			<svg
-				class="h-4 w-4"
-				fill="none"
-				stroke="currentColor"
-				viewBox="0 0 24 24"
-				aria-hidden="true"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M13 7l5 5m0 0l-5 5m5-5H6"
-				/>
-			</svg>
+			View all {categoryName} articles →
 		</a>
 	</div>
 {/if}
