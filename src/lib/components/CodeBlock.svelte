@@ -17,6 +17,9 @@
 	 */
 	export let section;
 
+	/** @type {boolean} */
+	export let dark = false;
+
 	/** Maps common shorthand aliases to Prism language keys */
 	const languageAliases = {
 		js: 'javascript',
@@ -52,7 +55,7 @@
 	})();
 </script>
 
-<section class="py-6 bg-gray-900">
+<section class="py-6 bg-slate-950">
 	<div class="container mx-auto px-4 max-w-4xl">
 		<div class="flex items-center justify-between mb-3">
 			<p class="text-xs font-mono uppercase tracking-widest text-gray-400">
@@ -62,7 +65,7 @@
 		</div>
 		<div class="relative">
 			<pre
-				class="bg-gray-800 rounded-lg p-6 overflow-x-auto"
+				class="bg-slate-900 rounded-lg p-6 overflow-x-auto"
 				tabindex="0"
 				role="region"
 				aria-label="{section.fields.caption} code example"
