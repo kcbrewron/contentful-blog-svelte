@@ -7,6 +7,12 @@
 	 */
 	export let section;
 
+	/**
+	 * When true, renders with dark color tokens (for use inside dark prose well)
+	 * @type {boolean}
+	 */
+	export let dark = false;
+
 	$: alignment = section.fields.alignment || 'left';
 	$: alignmentClass = {
 		left: 'text-left',
@@ -14,18 +20,18 @@
 		right: 'text-right'
 	}[alignment];
 
-	// Use richContent if available, otherwise fallback to plain content
 	$: htmlContent = section.fields.richContent
 		? documentToHtmlString(section.fields.richContent, richTextOptions)
 		: `<p>${section.fields.content || ''}</p>`;
 </script>
 
-<section class="py-6 bg-white">
-	<div class="container mx-auto px-4 max-w-4xl">
-		<h2 class="text-3xl font-bold mb-6 text-gray-900 {alignmentClass}">{section.fields.heading}</h2>
-		<div class="prose prose-lg {alignmentClass}">
+<section class="py-6 {dark ? '' : 'bg-white'}">
+	<div class="{dark ? '' : 'container mx-auto px-4 max-w-4xl'}">
+		<h2 class="text-3xl font-bold mb-6 {dark ? 'text-white' : 'text-gray-900'} {alignmentClass}">
+			{section.fields.heading}
+		</h2>
+		<div class="prose {dark ? 'prose-dark' : ''} prose-lg {alignmentClass}">
 			{@html htmlContent}
 		</div>
 	</div>
 </section>
-
