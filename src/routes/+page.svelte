@@ -4,7 +4,7 @@
 	import AboutSection from '$lib/components/AboutSection.svelte';
 
 	/**
-	 * @type {{ data: { categories: Array<any>, categoryPosts: Object, featuredImages: Array<string> } }}
+	 * @type {{ data: { categories: Array<any>, categoryPosts: Object, featuredImages: Array<string>, totalArticleCount: number } }}
 	 */
 	export let data;
 
@@ -23,16 +23,16 @@
 	/>
 </svelte:head>
 
-<Hero categories={categoryLinks} featuredImages={data.featuredImages} />
+<Hero categories={categoryLinks} featuredImages={data.featuredImages} articleCount={data.totalArticleCount} />
 
 <!-- Category Sections with Recent Articles -->
 {#each data.categories as category, index}
 	<CategorySection
 		{category}
 		posts={data.categoryPosts[category.sys.id] || []}
-		limit={2}
-		id={index === 0 ? 'Cloud & Software Architecture' : ''}
+		limit={3}
+		id={index === 0 ? 'featured' : ''}
 	/>
 {/each}
 
-<AboutSection />
+<AboutSection siteKey={data.turnstileSiteKey} />

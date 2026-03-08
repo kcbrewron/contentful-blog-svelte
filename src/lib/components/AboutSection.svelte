@@ -1,4 +1,9 @@
 <script>
+	import SubscribeForm from './SubscribeForm.svelte';
+
+	/** @type {string} */
+	export let siteKey = '';
+
 	/**
 	 * @type {{ name?: string, bio?: string, avatarUrl?: string, socialLinks?: Array<{platform: string, url: string, icon: string}> }}
 	 */
@@ -35,37 +40,28 @@
 	};
 </script>
 
-<section class="py-16 bg-white border-t border-gray-200">
-	<div class="container mx-auto px-4 max-w-4xl">
-		<div class="flex flex-col md:flex-row items-center gap-8">
-			{#if about.avatarUrl}
-				<div class="flex-shrink-0">
-					<img
-						src={about.avatarUrl}
-						alt={about.name}
-						class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-lg"
-					/>
-				</div>
-			{/if}
-
-			<div class="flex-1 text-center md:text-left">
-				<h2 class="text-3xl font-bold text-gray-900 mb-4">About {about.name}</h2>
-				<p class="text-lg text-gray-700 mb-6 leading-relaxed">
+<section id="subscribe" class="bg-brand-dark text-white py-20 border-t border-brand-border">
+	<div class="max-w-7xl mx-auto px-20">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+			<!-- Left Column -->
+			<div>
+				<h2 class="text-3xl lg:text-4xl font-black text-white mb-6">About Ron Nelson</h2>
+				<p class="text-base text-brand-text-subtle leading-relaxed mb-8">
 					{about.bio}
 				</p>
 
 				{#if about.socialLinks && about.socialLinks.length > 0}
-					<div class="flex justify-center md:justify-start gap-4">
+					<div class="flex gap-6">
 						{#each about.socialLinks as link}
 							{#if iconPaths[link.icon]}
 								<a
 									href={link.url}
 									target="_blank"
 									rel="noopener noreferrer"
-									class="text-gray-600 hover:text-blue-600 transition-colors"
-									aria-label={link.platform}
+									class="text-brand-text-muted hover:text-brand-primary transition-colors"
+									aria-label="{link.platform} (opens in new tab)"
 								>
-									<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+									<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 										<path d={iconPaths[link.icon]} />
 									</svg>
 								</a>
@@ -73,6 +69,18 @@
 						{/each}
 					</div>
 				{/if}
+			</div>
+
+			<!-- Right Column - Subscribe Form -->
+			<div class="bg-[#12121E] rounded-2xl p-10 flex flex-col gap-5">
+				<div class="flex flex-col gap-2">
+					<h3 class="text-2xl font-bold text-white tracking-tight">Stay in the loop</h3>
+					<p class="text-sm text-brand-text-subtle leading-relaxed">
+						Get new articles on cloud architecture, leadership, and life delivered directly to your inbox.
+						No spam, unsubscribe anytime.
+					</p>
+				</div>
+				<SubscribeForm {siteKey} />
 			</div>
 		</div>
 	</div>

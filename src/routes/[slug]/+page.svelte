@@ -1,5 +1,5 @@
 <script>
-	import CategoryLanding from '$lib/components/CategoryLanding.svelte';
+	import ContentCluster from '$lib/components/ContentCluster.svelte';
 	import PageRenderer from '$lib/components/PageRenderer.svelte';
 
 	/**
@@ -9,7 +9,7 @@
 </script>
 
 {#if data.type === 'category'}
-	<CategoryLanding category={data.category} posts={data.posts} />
+	<ContentCluster category={data.category} posts={data.posts} />
 {:else}
 	<PageRenderer page={data.page} />
 {/if}

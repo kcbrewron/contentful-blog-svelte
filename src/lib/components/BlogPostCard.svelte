@@ -6,7 +6,7 @@
 	export let post;
 
 	/**
-	 * @type {'vertical' | 'horizontal'}
+	 * @type {'vertical' | 'horizontal' | 'grid'}
 	 */
 	export let variant = 'vertical';
 
@@ -117,6 +117,75 @@
 						/>
 					</svg>
 				</a>
+			</div>
+		</div>
+	</article>
+{:else if variant === 'grid'}
+	<article class="bg-brand-darker rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-brand-border hover:border-brand-primary/50">
+		{#if featuredImageUrl}
+			<!-- Image link is hidden from a11y tree — title link below is the primary link -->
+			<a href={postUrl} class="block relative overflow-hidden bg-brand-darker h-48" tabindex="-1" aria-hidden="true" target={isExternalLink ? '_blank' : undefined} rel={isExternalLink ? 'noopener noreferrer' : undefined}>
+				<img
+					src={buildContentfulImageUrl(featuredImageUrl, { width: 600 })}
+					srcset={buildContentfulSrcset(featuredImageUrl, [400, 600, 800])}
+					sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+					alt=""
+					loading="lazy"
+					decoding="async"
+					class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+				/>
+			</a>
+		{/if}
+
+		<div class="p-6 flex flex-col">
+			<!-- Category Label -->
+			<div class="mb-3">
+				<a href="/{categorySlug}" class="inline-block text-xs font-semibold text-brand-primary uppercase tracking-wide hover:text-white transition-colors">
+					{categoryName}
+				</a>
+			</div>
+
+			<!-- Title -->
+			<h3 class="text-lg font-bold mb-3 flex-1">
+				<a
+					href={postUrl}
+					class="text-white hover:text-brand-primary transition-colors line-clamp-2"
+					target={isExternalLink ? '_blank' : undefined}
+					rel={isExternalLink ? 'noopener noreferrer' : undefined}
+				>
+					{post.fields.title}
+					{#if isExternalLink}
+						<svg class="inline w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+						</svg>
+						<span class="sr-only">(opens in new tab)</span>
+					{/if}
+				</a>
+			</h3>
+
+			<!-- Description -->
+			<p class="text-sm text-brand-text-subtle mb-4 line-clamp-2">{post.fields.excerpt}</p>
+
+			<!-- Footer -->
+			<div class="pt-4 border-t border-brand-border">
+				<div class="flex items-center justify-between text-xs text-brand-text-muted">
+					<div class="flex items-center gap-2">
+						{#if post.fields.estimatedReadingTime}
+							<span>{post.fields.estimatedReadingTime} min read</span>
+							<span aria-hidden="true">•</span>
+						{/if}
+						<time datetime={post.fields.publishedDate}>{formattedDate.split(',')[0]}</time>
+					</div>
+					<a
+						href={postUrl}
+						class="text-brand-primary hover:text-white transition-colors font-medium flex items-center gap-1"
+						target={isExternalLink ? '_blank' : undefined}
+						rel={isExternalLink ? 'noopener noreferrer' : undefined}
+					>
+						<span class="sr-only">{post.fields.title}</span>
+						<span aria-hidden="true">→</span>
+					</a>
+				</div>
 			</div>
 		</div>
 	</article>

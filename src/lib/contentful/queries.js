@@ -38,20 +38,20 @@ export async function getPostsByCategory(categoryId, preview = false) {
 	const client = getContentfulClient({ preview });
 
 	try {
-		// Fetch blog posts
+		// Fetch blog posts with increased include depth for image resolution
 		const blogPostsResponse = await client.getEntries({
 			content_type: 'blogPost',
 			'fields.category.sys.id': categoryId,
 			order: '-fields.publishedDate',
-			include: 2
+			include: 3
 		});
 
-		// Fetch external articles
+		// Fetch external articles with increased include depth for image resolution
 		const externalArticlesResponse = await client.getEntries({
 			content_type: 'externalArticle',
 			'fields.category.sys.id': categoryId,
 			order: '-fields.publishedDate',
-			include: 2
+			include: 3
 		});
 
 		// Combine and sort by published date

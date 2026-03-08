@@ -5,12 +5,12 @@
 	 * @type {{ title?: string, subtitle?: string, description?: string, ctaText?: string, ctaUrl?: string }}
 	 */
 	export let heroData = {
-		title: 'Ron Nelson',
-		subtitle: 'Cloud & Software Architecture',
+		title: 'Edge-Native, Distributed Systems, Real Production',
+		subtitle: '',
 		description:
-			'Practical insights on edge-native architecture, distributed systems design, AI workloads, and building on the Cloudflare platform.',
+			'Practical insights on Cloudflare Workers, distributed architecture, AI workloads, and the real-world decisions behind building production systems — by Ron Nelson.',
 		ctaText: 'Explore Articles',
-		ctaUrl: '#Cloud%20&%20Software%20Architecture'
+		ctaUrl: '/#featured'
 	};
 
 	/**
@@ -22,88 +22,78 @@
 	 * @type {Array<{url: string, width: number|null, height: number|null}>}
 	 */
 	export let featuredImages = [];
+
+	/**
+	 * @type {number}
+	 */
+	export let articleCount = 0;
 </script>
 
-<section class="relative text-white py-24 overflow-hidden min-h-[600px] flex items-center">
-	<!-- Image Collage Background -->
-	{#if featuredImages.length > 0}
-		<div class="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-2" aria-hidden="true">
-			{#each featuredImages.slice(0, 4) as image, index}
-				<div class="relative overflow-hidden animate-fade-in" style="animation-delay: {index * 100}ms">
-					<img
-						src={buildContentfulImageUrl(image.url, { width: 800 })}
-						srcset={buildContentfulSrcset(image.url, [400, 800, 1200])}
-						sizes="(min-width:1024px) 50vw, 100vw"
-						alt=""
-						width={image.width ?? undefined}
-						height={image.height ?? undefined}
-						fetchpriority={index === 0 ? 'high' : undefined}
-						loading={index === 0 ? undefined : 'lazy'}
-						decoding={index === 0 ? undefined : 'async'}
-						class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
-					/>
-				</div>
-			{/each}
+<section class="bg-brand-dark text-white py-24 md:py-32 lg:py-[140px]">
+	<div class="max-w-7xl mx-auto px-20">
+		<!-- Hero Badge -->
+		<div class="mb-8">
+			<div class="inline-flex items-center gap-2 bg-brand-border rounded-full px-3.5 py-1.5">
+				<svg class="w-3 h-3 fill-brand-primary" viewBox="0 0 12 12" aria-hidden="true">
+					<circle cx="6" cy="6" r="4" />
+				</svg>
+				<span class="text-xs font-semibold text-brand-primary uppercase tracking-wide">New insights</span>
+			</div>
 		</div>
-	{/if}
 
-	<!-- Gradient Overlay -->
-	<div class="absolute inset-0 bg-gradient-to-br from-blue-900/95 via-blue-800/90 to-purple-900/95"></div>
-
-	<!-- Additional texture overlay for depth -->
-	<div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20"></div>
-
-	<div class="relative container mx-auto px-4 max-w-6xl z-10">
-		<div class="text-center">
-			<h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 animate-fade-in drop-shadow-lg">
-				{heroData.title}
+		<!-- Main Headline -->
+		<div class="mb-8 max-w-3xl">
+			<h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight md:leading-tight lg:leading-tight tracking-tight mb-6">
+				Edge-Native,<br />
+				Distributed Systems,<br />
+				<span class="text-brand-primary">Real Production</span>
 			</h1>
+		</div>
 
-			{#if heroData.subtitle}
-				<p class="text-2xl md:text-3xl font-light mb-6 opacity-95 drop-shadow-md animate-slide-up">
-					{heroData.subtitle}
-				</p>
-			{/if}
-
-			{#if heroData.description}
-				<p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 opacity-95 leading-relaxed drop-shadow-md animate-slide-up" style="animation-delay: 100ms">
+		<!-- Subtitle/Description -->
+		{#if heroData.description}
+			<div class="max-w-2xl mb-12">
+				<p class="text-base md:text-lg text-brand-text-subtle leading-relaxed">
 					{heroData.description}
 				</p>
-			{/if}
+			</div>
+		{/if}
 
-			<!-- Category quick links -->
-			{#if categories.length > 0}
-				<div class="flex flex-wrap justify-center gap-3 mb-8 animate-slide-up" style="animation-delay: 200ms">
-					{#each categories as category}
-						<a
-							href="/{category.slug}"
-							class="px-5 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 shadow-lg"
-						>
-							{category.name}
-						</a>
-					{/each}
-				</div>
-			{/if}
-
-			{#if heroData.ctaText && heroData.ctaUrl}
-				<div class="animate-slide-up" style="animation-delay: 300ms">
-					<a
-						href={heroData.ctaUrl}
-						class="inline-flex items-center gap-2 bg-white text-blue-700 font-semibold px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105"
-					>
-						{heroData.ctaText}
-						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M19 9l-7 7-7-7"
-							/>
-						</svg>
-					</a>
-				</div>
-			{/if}
+		<!-- CTAs -->
+		<div class="flex flex-col sm:flex-row items-start gap-4 mb-16">
+			<a
+				href={heroData.ctaUrl}
+				class="inline-flex items-center justify-center px-7 py-3.5 bg-brand-primary text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors duration-150"
+			>
+				{heroData.ctaText}
+			</a>
+			<button
+				class="inline-flex items-center justify-center px-7 py-3.5 border border-brand-border text-brand-text-muted rounded-lg hover:text-white hover:border-brand-text-muted transition-colors duration-150"
+				aria-label="Learn about the blog"
+			>
+				Learn more
+			</button>
 		</div>
+
+		<!-- Stats Section -->
+		{#if categories.length > 0 || articleCount > 0}
+			<div class="flex flex-col sm:flex-row items-start gap-8 max-w-2xl">
+				<div>
+					<div class="text-2xl md:text-3xl font-bold text-white mb-1">{categories.length}</div>
+					<p class="text-xs md:text-sm text-brand-text-muted uppercase tracking-wide">Topics</p>
+				</div>
+				<div class="hidden sm:block w-10 h-px bg-brand-border self-center"></div>
+				<div>
+					<div class="text-2xl md:text-3xl font-bold text-white mb-1">{articleCount}</div>
+					<p class="text-xs md:text-sm text-brand-text-muted uppercase tracking-wide">Articles</p>
+				</div>
+				<div class="hidden sm:block w-10 h-px bg-brand-border self-center"></div>
+				<div>
+					<div class="text-2xl md:text-3xl font-bold text-white mb-1">Edge</div>
+					<p class="text-xs md:text-sm text-brand-text-muted uppercase tracking-wide">Deployed</p>
+				</div>
+			</div>
+		{/if}
 	</div>
 </section>
 

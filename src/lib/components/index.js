@@ -20,3 +20,4 @@ export { default as RelatedArticles } from './RelatedArticles.svelte';
 export { default as CategoryShowcase } from './CategoryShowcase.svelte';
 export { default as CategorySection } from './CategorySection.svelte';
 export { default as AboutSection } from './AboutSection.svelte';
+export { default as SubscribeForm } from './SubscribeForm.svelte';

@@ -10,12 +10,33 @@
 	// Environment variables (non-secret)
 	"vars": {
 		"CONTENTFUL_SPACE_ID": "2tyl7ps8aucz",
-		"CONTENTFUL_ENVIRONMENT": "master"
+		"CONTENTFUL_ENVIRONMENT": "master",
+		// Turnstile site key (get from Cloudflare dashboard → Turnstile)
+		"TURNSTILE_SITE_KEY": "1x00000000000000000000AA",
+		"ADMIN_EMAIL": "ron@ronnelson.dev"
 	},
+	// D1 database for email subscribers
+	// Run: npx wrangler d1 create blog-subscribers
+	// Then replace database_id below with the returned ID
+	"d1_databases": [
+		{
+			"binding": "SUBSCRIBERS_DB",
+			"database_name": "blog-subscribers",
+			"database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+		}
+	],
+	// Email sending via Cloudflare Email Routing
+	// Requires Email Routing enabled for ronnelson.dev in Cloudflare dashboard
+	"send_email": [
+		{
+			"name": "SEND_EMAIL"
+		}
+	],
 	// Secret variables should be set via:
 	// npx wrangler secret put CONTENTFUL_ACCESS_TOKEN
 	// npx wrangler secret put CONTENTFUL_PREVIEW_ACCESS_TOKEN
 	// npx wrangler secret put CONTENTFUL_MANAGEMENT_TOKEN
+	// npx wrangler secret put TURNSTILE_SECRET_KEY
 	// Node.js compatibility for SvelteKit
 	"compatibility_flags": [
 		"nodejs_compat"
