@@ -2,6 +2,7 @@
 	"name": "blog",
 	"compatibility_date": "2025-01-10",
 	"main": ".svelte-kit/cloudflare/_worker.js",
+	"account_id": "5616e3b68f739947e9f372e7c9b4c5c2",
 	"workers_dev": false,
 	"preview_urls": false,
 	// Workers with Assets configuration
@@ -14,6 +15,7 @@
 		"CONTENTFUL_SPACE_ID": "2tyl7ps8aucz",
 		"CONTENTFUL_ENVIRONMENT": "master",
 		// Turnstile site key (get from Cloudflare dashboard → Turnstile)
+		"TURNSTILE_SITE_KEY": "0x4AAAAAACoBr4dRy4s2Qenb",
 		"ADMIN_EMAIL": "ron@ronnelson.dev"
 	},
 	// D1 database for email subscribers

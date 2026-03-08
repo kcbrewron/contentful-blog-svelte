@@ -35,10 +35,10 @@
 	$: titleColor = colorClasses[themeColor] || colorClasses.blue;
 </script>
 
-<section class="bg-brand-darker text-white py-20" {id}>
+<section class="bg-brand-darker text-white py-4" {id}>
 	<div class="max-w-7xl mx-auto px-20">
 		<!-- Section Header -->
-		<div class="flex items-start justify-between gap-8 mb-16">
+		<div class="flex items-start justify-between gap-8 mb-4">
 			<div class="flex-1">
 				<h2 class="text-3xl md:text-4xl font-black text-white mb-3">{category.fields.name}</h2>
 				{#if category.fields.description}
@@ -64,7 +64,7 @@
 
 		<!-- Article Grid -->
 		{#if displayPosts.length > 0}
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
 				{#each displayPosts as post}
 					<BlogPostCard {post} variant="grid" />
 				{/each}

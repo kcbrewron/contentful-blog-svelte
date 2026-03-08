@@ -122,6 +122,11 @@ export default {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
+      fontSize: {
+        // Raise text-sm floor to 16px so no body text renders below that threshold.
+        // text-xs (12px) is unchanged for intentional micro-text (badges, timestamps).
+        sm: ['1rem', { lineHeight: '1.5rem' }],
+      },
       colors: {
         // Design system colors from blog_design.pen
         brand: {
