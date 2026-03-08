@@ -3,7 +3,7 @@
 	"compatibility_date": "2025-01-10",
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"workers_dev": false,
-	"preview_urls": true,
+	"preview_urls": false,
 	// Workers with Assets configuration
 	"assets": {
 		"directory": ".svelte-kit/cloudflare/assets",
