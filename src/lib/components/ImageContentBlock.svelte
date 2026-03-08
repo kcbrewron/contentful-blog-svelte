@@ -8,11 +8,16 @@
 	 */
 	export let section;
 
+	/**
+	 * When true, renders with dark color tokens (for use inside dark prose well)
+	 * @type {boolean}
+	 */
+	export let dark = false;
+
 	$: imagePosition = section.fields.imagePosition || 'left';
 	$: imageUrl = section.fields.image?.fields?.file?.url;
 	$: imageAlt = section.fields.image?.fields?.description || section.fields.image?.fields?.title || '';
 
-	// Use richContent if available, otherwise fallback to plain content
 	$: htmlContent = section.fields.richContent
 		? documentToHtmlString(section.fields.richContent, richTextOptions)
 		: section.fields.content
@@ -20,9 +25,11 @@
 			: '';
 </script>
 
-<section class="py-6 bg-white">
-	<div class="container mx-auto px-4 max-w-4xl">
-		<h2 class="text-3xl font-bold mb-8 text-gray-900">{section.fields.heading}</h2>
+<section class="py-6 {dark ? '' : 'bg-white'}">
+	<div class="{dark ? '' : 'container mx-auto px-4 max-w-4xl'}">
+		<h2 class="text-3xl font-bold mb-8 {dark ? 'text-white' : 'text-gray-900'}">
+			{section.fields.heading}
+		</h2>
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 			{#if imagePosition === 'left'}
 				<div class="order-1">
@@ -34,18 +41,18 @@
 							alt={imageAlt}
 							loading="lazy"
 							decoding="async"
-							class="w-full h-auto rounded-lg shadow-lg"
+							class="w-full h-auto rounded-lg {dark ? 'shadow-lg shadow-black/40' : 'shadow-lg'}"
 						/>
 					{/if}
 				</div>
 				{#if htmlContent}
-					<div class="order-2 prose prose-lg">
+					<div class="order-2 prose {dark ? 'prose-dark' : ''} prose-lg">
 						{@html htmlContent}
 					</div>
 				{/if}
 			{:else}
 				{#if htmlContent}
-					<div class="order-2 md:order-1 prose prose-lg">
+					<div class="order-2 md:order-1 prose {dark ? 'prose-dark' : ''} prose-lg">
 						{@html htmlContent}
 					</div>
 				{/if}
@@ -58,7 +65,7 @@
 							alt={imageAlt}
 							loading="lazy"
 							decoding="async"
-							class="w-full h-auto rounded-lg shadow-lg"
+							class="w-full h-auto rounded-lg {dark ? 'shadow-lg shadow-black/40' : 'shadow-lg'}"
 						/>
 					{/if}
 				</div>
