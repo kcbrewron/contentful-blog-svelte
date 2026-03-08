@@ -1,7 +1,9 @@
 {
-	"name": "contentful-svelte-blog",
+	"name": "blog",
 	"compatibility_date": "2025-01-10",
 	"main": ".svelte-kit/cloudflare/_worker.js",
+	"workers_dev": false,
+	"preview_urls": true,
 	// Workers with Assets configuration
 	"assets": {
 		"directory": ".svelte-kit/cloudflare/assets",
@@ -12,7 +14,6 @@
 		"CONTENTFUL_SPACE_ID": "2tyl7ps8aucz",
 		"CONTENTFUL_ENVIRONMENT": "master",
 		// Turnstile site key (get from Cloudflare dashboard → Turnstile)
-		"TURNSTILE_SITE_KEY": "1x00000000000000000000AA",
 		"ADMIN_EMAIL": "ron@ronnelson.dev"
 	},
 	// D1 database for email subscribers
@@ -22,7 +23,7 @@
 		{
 			"binding": "SUBSCRIBERS_DB",
 			"database_name": "blog-subscribers",
-			"database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+			"database_id": "8aca3c3b-031b-4646-856a-56d601c2f062"
 		}
 	],
 	// Email sending via Cloudflare Email Routing
