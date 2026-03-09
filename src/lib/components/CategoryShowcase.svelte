@@ -8,22 +8,6 @@
 	 * @type {Object<string, number>}
 	 */
 	export let categoryPostCounts = {};
-
-	const colorClasses = {
-		blue: 'from-blue-500 to-blue-600',
-		green: 'from-green-500 to-green-600',
-		purple: 'from-purple-500 to-purple-600',
-		red: 'from-red-500 to-red-600',
-		orange: 'from-orange-500 to-orange-600'
-	};
-
-	const hoverClasses = {
-		blue: 'hover:from-blue-600 hover:to-blue-700',
-		green: 'hover:from-green-600 hover:to-green-700',
-		purple: 'hover:from-purple-600 hover:to-purple-700',
-		red: 'hover:from-red-600 hover:to-red-700',
-		orange: 'hover:from-orange-600 hover:to-orange-700'
-	};
 </script>
 
 <section class="py-16 bg-gray-50">
@@ -37,13 +21,13 @@
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 				{#each categories as category}
 					{@const themeColor = category.fields.themeColor || 'blue'}
-					{@const gradientClass = colorClasses[themeColor] || colorClasses.blue}
-					{@const hoverClass = hoverClasses[themeColor] || hoverClasses.blue}
 					{@const postCount = categoryPostCounts[category.sys.id] || 0}
 
 					<a
 						href="/{category.fields.slug}"
-						class="group block bg-gradient-to-br {gradientClass} {hoverClass} text-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 transform hover:scale-105"
+						data-theme={themeColor}
+						class="group block text-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 transform hover:scale-105"
+						style="background: linear-gradient(to bottom right, var(--theme-gradient-from), var(--theme-gradient-to));"
 					>
 						<div class="p-8">
 							<h3 class="text-2xl font-bold mb-3">{category.fields.name}</h3>
@@ -72,5 +56,9 @@
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
+	}
+
+	a:hover {
+		filter: brightness(0.9);
 	}
 </style>
