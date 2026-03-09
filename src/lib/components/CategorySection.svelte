@@ -24,18 +24,9 @@
 	$: displayPosts = posts.slice(0, limit);
 	$: themeColor = category.fields.themeColor || 'blue';
 
-	const colorClasses = {
-		blue: 'text-brand-primary',
-		green: 'text-green-600',
-		purple: 'text-purple-600',
-		red: 'text-red-600',
-		orange: 'text-orange-600'
-	};
-
-	$: titleColor = colorClasses[themeColor] || colorClasses.blue;
 </script>
 
-<section class="bg-brand-darker text-white py-4" {id}>
+<section class="bg-brand-darker text-white py-4" {id} data-theme={themeColor}>
 	<div class="max-w-7xl mx-auto px-20">
 		<!-- Section Header -->
 		<div class="flex items-start justify-between gap-8 mb-4">
