@@ -8,18 +8,9 @@
 	$: themeColor = category.fields.themeColor || 'blue';
 	$: heroImageUrl = category.fields.heroImage?.fields?.file?.url;
 
-	const colorClasses = {
-		blue: 'bg-blue-600',
-		green: 'bg-green-600',
-		purple: 'bg-purple-600',
-		red: 'bg-red-600',
-		orange: 'bg-orange-600'
-	};
-
-	$: bgClass = colorClasses[themeColor] || colorClasses.blue;
 </script>
 
-<section class="relative {bgClass} text-white py-20">
+<section class="relative text-white py-20" data-theme={themeColor} style="background-color: var(--theme-hero-bg);">
 	{#if heroImageUrl}
 		<div class="absolute inset-0 opacity-20" aria-hidden="true">
 			<img
