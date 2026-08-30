@@ -36,15 +36,6 @@
 	$: featuredImageWidth = post.fields.featuredImage?.fields?.file?.details?.image?.width;
 	$: featuredImageHeight = post.fields.featuredImage?.fields?.file?.details?.image?.height;
 
-	const colorClasses = {
-		indigo: { badge: 'bg-indigo-900/30 text-indigo-300', dot: 'bg-indigo-500' },
-		amber: { badge: 'bg-amber-900/30 text-amber-300', dot: 'bg-amber-500' },
-		emerald: { badge: 'bg-emerald-900/30 text-emerald-300', dot: 'bg-emerald-500' },
-		purple: { badge: 'bg-purple-900/30 text-purple-300', dot: 'bg-purple-500' },
-		blue: { badge: 'bg-blue-900/30 text-blue-300', dot: 'bg-blue-500' }
-	};
-
-	$: colors = colorClasses[themeColor] || colorClasses.indigo;
 </script>
 
 <svelte:head>
@@ -59,7 +50,7 @@
 	{/if}
 </svelte:head>
 
-<article class="bg-slate-950">
+<article class="bg-slate-950" data-theme={themeColor}>
 	<!-- Article Header -->
 	<header class="relative bg-gradient-to-b from-slate-950 to-slate-900 pt-20 pb-16 lg:pt-28 lg:pb-20">
 		<div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -75,8 +66,8 @@
 			</nav>
 
 			<!-- Category badge -->
-			<div class="mb-6 inline-flex items-center gap-2 rounded-full {colors.badge} px-4 py-2">
-				<div class="h-2 w-2 rounded-full {colors.dot}"></div>
+			<div class="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2" style="background: var(--theme-badge-bg); color: var(--theme-badge-text);">
+				<div class="h-2 w-2 rounded-full" style="background: var(--theme-dot);"></div>
 				<span class="text-xs font-semibold uppercase tracking-wider">{categoryName}</span>
 			</div>
 

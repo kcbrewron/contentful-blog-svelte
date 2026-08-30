@@ -21,18 +21,9 @@
 	$: heroDescription = category.fields?.heroDescription || category.fields?.description || '';
 	$: themeColor = category.fields?.themeColor || 'indigo';
 
-	const colorClasses = {
-		indigo: { accent: 'text-indigo-400', badge: 'bg-indigo-900/30 text-indigo-300', dot: 'bg-indigo-500' },
-		amber: { accent: 'text-amber-400', badge: 'bg-amber-900/30 text-amber-300', dot: 'bg-amber-500' },
-		emerald: { accent: 'text-emerald-400', badge: 'bg-emerald-900/30 text-emerald-300', dot: 'bg-emerald-500' },
-		purple: { accent: 'text-purple-400', badge: 'bg-purple-900/30 text-purple-300', dot: 'bg-purple-500' },
-		blue: { accent: 'text-blue-400', badge: 'bg-blue-900/30 text-blue-300', dot: 'bg-blue-500' }
-	};
-
-	$: colors = colorClasses[themeColor] || colorClasses.indigo;
 </script>
 
-<section class="relative bg-gradient-to-b from-slate-950 to-slate-900 pt-20 pb-16 lg:pt-28 lg:pb-20">
+<section class="relative bg-gradient-to-b from-slate-950 to-slate-900 pt-20 pb-16 lg:pt-28 lg:pb-20" data-theme={themeColor}>
 	<!-- Breadcrumb -->
 	<div class="mx-auto max-w-7xl px-6 lg:px-8 mb-12">
 		<nav class="flex items-center gap-2 text-sm">
@@ -49,8 +40,8 @@
 
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<!-- Badge with indicator -->
-		<div class="mb-8 inline-flex items-center gap-2 rounded-full {colors.badge} px-4 py-2">
-			<div class="h-2 w-2 rounded-full {colors.dot}"></div>
+		<div class="mb-8 inline-flex items-center gap-2 rounded-full px-4 py-2" style="background: var(--theme-badge-bg); color: var(--theme-badge-text);">
+			<div class="h-2 w-2 rounded-full" style="background: var(--theme-dot);"></div>
 			<span class="text-xs font-semibold uppercase tracking-wider">{label}</span>
 		</div>
 
@@ -82,9 +73,3 @@
 		</div>
 	</div>
 </section>
-
-<style>
-	:global(.cluster-accent-text) {
-		@apply font-semibold;
-	}
-</style>
