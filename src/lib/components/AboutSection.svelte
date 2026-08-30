@@ -72,7 +72,7 @@
 			</div>
 
 			<!-- Right Column - Subscribe Form -->
-			<div class="bg-[#12121E] rounded-2xl p-10 flex flex-col gap-5">
+			<div class="bg-brand-surface rounded-2xl p-10 flex flex-col gap-5">
 				<div class="flex flex-col gap-2">
 					<h3 class="text-2xl font-bold text-white tracking-tight">Stay in the loop</h3>
 					<p class="text-sm text-brand-text-subtle leading-relaxed">

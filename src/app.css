@@ -12,6 +12,8 @@
   --color-brand-text-subtle: #71717A;
   --color-brand-text-dimmer: #3A3A5E;
   --color-brand-primary: #6366F1;
+  --color-brand-surface: #12121E;
+  --color-brand-border-elevated: #2A2A3E;
 }
 
 /* ─── Focus-visible accessibility ─────────────────────────────────────────── */
