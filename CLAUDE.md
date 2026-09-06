@@ -6,15 +6,35 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 SvelteKit blog application using Contentful CMS, deployed as a Cloudflare Worker with Assets binding, styled with TailwindCSS.
 
+## Project Memory System
+
+### Memory-Aware Protocols
+
+**Before proposing architectural changes:**
+
+- Check `docs/project_notes/decisions.md` for existing decisions
+- Verify the proposed approach doesn't conflict with past choices
+
+**When encountering errors or bugs:**
+
+- Search `docs/project_notes/bugs.md` for similar issues
+- Apply known solutions if found
+- Document new bugs and solutions when resolved
+
+**When looking up project configuration:**
+
+- Check `docs/project_notes/key_facts.md` for credentials, ports, URLs
+- Prefer documented facts over assumptions
+
 ## Development Commands
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production (outputs to `.svelte-kit/cloudflare`)
-- `npm run preview` - Preview production build
-- `npm test` - Run tests with Vitest
-- `npm run docs` - Generate JSDoc documentation
-- `npm run contentful:publish-model` - Publish Contentful content model
-- `npm run contentful:list-types` - List existing Contentful content types
+- `yarn dev` - Start development server
+- `yarn run build` - Build for production (outputs to `.svelte-kit/cloudflare`)
+- `yarn run preview` - Preview production build
+- `yarn test` - Run tests with Vitest
+- `yarn run docs` - Generate JSDoc documentation
+- `yarn run contentful:publish-model` - Publish Contentful content model
+- `yarn run contentful:list-types` - List existing Contentful content types
 
 ## Deployment Commands
 
@@ -27,6 +47,7 @@ SvelteKit blog application using Contentful CMS, deployed as a Cloudflare Worker
 ## Architecture
 
 ### SvelteKit Structure
+
 - **src/routes/** - File-based routing (pages and API endpoints)
 - **src/app.html** - HTML shell template
 - **src/app.css** - Global Tailwind styles
@@ -35,6 +56,7 @@ SvelteKit blog application using Contentful CMS, deployed as a Cloudflare Worker
 - **src/service-worker.js** - PWA service worker
 
 ### Deployment Target
+
 - Uses `@sveltejs/adapter-cloudflare` for Cloudflare Workers with Assets
 - Worker configuration in `wrangler.jsonc`:
   - `main` - Worker entry point (`.svelte-kit/cloudflare/_worker.js`)
@@ -44,6 +66,7 @@ SvelteKit blog application using Contentful CMS, deployed as a Cloudflare Worker
 - Build output: `.svelte-kit/cloudflare/`
 
 ### Contentful Integration
+
 - **Content Delivery API** - Used in production for published content
 - **Preview API** - Used with `?preview=true` query parameter for draft content
 - **Management API** - Used in scripts for publishing content models
@@ -57,6 +80,7 @@ SvelteKit blog application using Contentful CMS, deployed as a Cloudflare Worker
 ### Code Style Conventions
 
 **Use JSDoc for type documentation:**
+
 ```javascript
 /**
  * @typedef {Object} User
@@ -66,6 +90,7 @@ SvelteKit blog application using Contentful CMS, deployed as a Cloudflare Worker
 ```
 
 **Prefer named functions over arrow functions for primary declarations:**
+
 ```javascript
 // DO
 function handleSubmit(event) { }
@@ -75,6 +100,7 @@ const handleSubmit = (event) => { };
 ```
 
 **Database operations should use typed JSDoc:**
+
 ```javascript
 /**
  * @param {number} id
@@ -84,17 +110,20 @@ function getUser(id) { }
 ```
 
 ### Testing Patterns
+
 - Use Vitest for unit tests
 - Write descriptive test blocks with named functions
 - Include JSDoc type annotations in test setup
 
 ### Security
+
 - **Never commit secrets** - Use `.dev.vars` for local development (gitignored)
 - **Separate secrets from config** - Non-secrets in `wrangler.jsonc`, secrets via Wrangler CLI
 - Store Contentful tokens as secrets, not environment variables
 - Validate all user inputs from Contentful rich text fields
 
 ### Performance
+
 - Leverage edge deployment with Cloudflare
 - Optimize database queries
 - Use SvelteKit's built-in code splitting

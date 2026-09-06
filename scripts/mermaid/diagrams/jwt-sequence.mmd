@@ -1,0 +1,12 @@
+sequenceDiagram
+    participant U as UI Worker (SvelteKit)
+    participant A as API Worker (Hono)
+    participant S as Supabase JWKS
+
+    Note over U: @supabase/ssr holds session
+    U->>A: request + JWT (service binding)
+    Note over A: no supabase-js, no shared trust
+    A->>S: fetch public JWKS (cached 1hr)
+    S-->>A: signing keys
+    A->>A: verify ES256 signature via Web Crypto
+    A-->>U: response (only if signature + expiry check pass)

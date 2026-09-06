@@ -1,0 +1,17 @@
+flowchart TD
+    classDef blue fill:#EFF6FF,stroke:#2563EB,stroke-width:2px,color:#111827
+    classDef purple fill:#FAF5FF,stroke:#9333EA,stroke-width:2px,color:#111827
+    classDef green fill:#F0FDF4,stroke:#16A34A,stroke-width:2px,color:#111827
+
+    A["`**Company**
+    practice group or independent owner`"]:::blue
+    B["`**Clinic**
+    own fee schedule, own PIMS`"]:::purple
+    C["`**Doctor A**
+    home clinic`"]:::green
+    D["`**Doctor B**
+    locum, 2 clinics`"]:::green
+
+    A -->|owns| B
+    B -->|staffed by| C
+    B -->|staffed by| D

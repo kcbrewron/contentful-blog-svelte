@@ -4,15 +4,9 @@
 	import { richTextOptions } from '$lib/contentful/richTextOptions.js';
 
 	/**
-	 * @type {{ fields: { heading: string, richContent?: any, content?: string, image: any, imagePosition: string } }}
+	 * @type {{ section: { fields: { heading: string, richContent?: any, content?: string, image: any, imagePosition: string } }, dark?: boolean }}
 	 */
-	export let section;
-
-	/**
-	 * When true, renders with dark color tokens (for use inside dark prose well)
-	 * @type {boolean}
-	 */
-	export let dark = false;
+	const { section, dark = false } = $props();
 
 	let lightboxOpen = $state(false);
 
@@ -28,15 +22,17 @@
 		if (e.key === 'Escape') closeLightbox();
 	}
 
-	$: imagePosition = section.fields.imagePosition || 'left';
-	$: imageUrl = section.fields.image?.fields?.file?.url;
-	$: imageAlt = section.fields.image?.fields?.description || section.fields.image?.fields?.title || '';
+	const imagePosition = $derived(section.fields.imagePosition || 'left');
+	const imageUrl = $derived(section.fields.image?.fields?.file?.url);
+	const imageAlt = $derived(section.fields.image?.fields?.description || section.fields.image?.fields?.title || '');
 
-	$: htmlContent = section.fields.richContent
-		? documentToHtmlString(section.fields.richContent, richTextOptions)
-		: section.fields.content
-			? `<p>${section.fields.content}</p>`
-			: '';
+	const htmlContent = $derived(
+		section.fields.richContent
+			? documentToHtmlString(section.fields.richContent, richTextOptions)
+			: section.fields.content
+				? `<p>${section.fields.content}</p>`
+				: ''
+	);
 </script>
 
 <svelte:window onkeydown={lightboxOpen ? handleKeydown : undefined} />

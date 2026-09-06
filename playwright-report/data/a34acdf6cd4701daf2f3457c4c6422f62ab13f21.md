@@ -1,0 +1,246 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - navigation "Main navigation" [ref=e4]:
+    - generic [ref=e6]:
+      - link "ronnelson.dev" [ref=e8] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e9]: ronnelson.dev
+      - button "Open main menu" [ref=e12]:
+        - img [ref=e13]
+  - main [ref=e15]:
+    - generic [ref=e17]:
+      - generic [ref=e19]:
+        - img [ref=e20]
+        - generic [ref=e22]: New insights
+      - heading "Edge-Native, Distributed Systems, Real Production" [level=1] [ref=e24]:
+        - text: Edge-Native,
+        - text: Distributed Systems,
+        - text: Real Production
+      - paragraph [ref=e26]: Practical insights on Cloudflare Workers, distributed architecture, AI workloads, and the real-world decisions behind building production systems — by Ron Nelson.
+      - generic [ref=e27]:
+        - link "Explore Articles" [ref=e28] [cursor=pointer]:
+          - /url: /#featured
+        - button "Learn about the blog" [ref=e29]: Learn more
+      - generic [ref=e30]:
+        - generic [ref=e31]:
+          - generic [ref=e32]: "3"
+          - paragraph [ref=e33]: Topics
+        - generic [ref=e34]:
+          - generic [ref=e35]: "10"
+          - paragraph [ref=e36]: Articles
+        - generic [ref=e37]:
+          - generic [ref=e38]: Edge
+          - paragraph [ref=e39]: Deployed
+    - generic [ref=e41]:
+      - generic [ref=e43]:
+        - heading "Cloud & Software Architecture" [level=2] [ref=e44]
+        - paragraph [ref=e45]: Deep dives into modern cloud architecture, edge computing with Cloudflare Workers, distributed systems design, and applied AI systems. This section focuses on practical implementation patterns drawn from real production environments.
+      - generic [ref=e46]:
+        - article [ref=e47]:
+          - link [ref=e48] [cursor=pointer]:
+            - /url: /cloud/cloudflare-workers
+          - generic [ref=e49]:
+            - link "Cloud & Software Architecture" [ref=e51] [cursor=pointer]:
+              - /url: /cloud
+            - heading "Cloudflare Workers Deep Dive" [level=3] [ref=e52]:
+              - link "Cloudflare Workers Deep Dive" [ref=e53] [cursor=pointer]:
+                - /url: /cloud/cloudflare-workers
+            - paragraph [ref=e54]: Cloudflare Workers is a serverless platform that allows developers to run JavaScript at the edge of the network, closest to the users. This enables fast, scalable, and secure applications.
+            - generic [ref=e56]:
+              - generic [ref=e57]:
+                - generic [ref=e58]: 8 min read
+                - generic [ref=e59]: •
+                - time [ref=e60]: February 28
+              - link "Cloudflare Workers Deep Dive" [ref=e61] [cursor=pointer]:
+                - /url: /cloud/cloudflare-workers
+                - generic [ref=e62]: Cloudflare Workers Deep Dive
+                - generic [ref=e63]: →
+        - article [ref=e64]:
+          - link [ref=e65] [cursor=pointer]:
+            - /url: https://medium.com/@nelson.ron/beyond-code-generation-the-real-value-developers-bring-to-agentic-ai-e4a6bd6abfa2
+          - generic [ref=e66]:
+            - link "Cloud & Software Architecture" [ref=e68] [cursor=pointer]:
+              - /url: /cloud
+            - 'heading "Beyond Code Generation: The Real Value Developers Bring to Agentic AI (opens in new tab)" [level=3] [ref=e69]':
+              - 'link "Beyond Code Generation: The Real Value Developers Bring to Agentic AI (opens in new tab)" [ref=e70] [cursor=pointer]':
+                - /url: https://medium.com/@nelson.ron/beyond-code-generation-the-real-value-developers-bring-to-agentic-ai-e4a6bd6abfa2
+                - text: "Beyond Code Generation: The Real Value Developers Bring to Agentic AI"
+                - img [ref=e71]
+                - generic [ref=e73]: (opens in new tab)
+            - paragraph [ref=e74]: A wake-up call about what you’re actually doing — and how to make sure your organization sees it
+            - generic [ref=e76]:
+              - generic [ref=e77]:
+                - generic [ref=e78]: 7 min read
+                - generic [ref=e79]: •
+                - time [ref=e80]: January 30
+              - 'link "Beyond Code Generation: The Real Value Developers Bring to Agentic AI" [ref=e81] [cursor=pointer]':
+                - /url: https://medium.com/@nelson.ron/beyond-code-generation-the-real-value-developers-bring-to-agentic-ai-e4a6bd6abfa2
+                - generic [ref=e82]: "Beyond Code Generation: The Real Value Developers Bring to Agentic AI"
+                - generic [ref=e83]: →
+      - link "View all Cloud & Software Architecture articles" [ref=e85] [cursor=pointer]:
+        - /url: /cloud
+        - text: View all
+        - img [ref=e86]
+    - generic [ref=e89]:
+      - generic [ref=e91]:
+        - heading "Leadership" [level=2] [ref=e92]
+        - paragraph [ref=e93]: Insights on leading with clarity and purpose. Covering time management, coaching, and leadership.
+      - generic [ref=e94]:
+        - article [ref=e95]:
+          - link [ref=e96] [cursor=pointer]:
+            - /url: https://medium.com/@nelson.ron/influence-without-authority-a-guide-for-solution-architects-and-lead-engineers-3b56986bc3db?sk=ccab2afbc39e6783b868dd4300a4f908
+          - generic [ref=e97]:
+            - link "Leadership" [ref=e99] [cursor=pointer]:
+              - /url: /leadership
+            - 'heading "Influence Without Authority: A Journey from Blunt Force to Bridge Building (opens in new tab)" [level=3] [ref=e100]':
+              - 'link "Influence Without Authority: A Journey from Blunt Force to Bridge Building (opens in new tab)" [ref=e101] [cursor=pointer]':
+                - /url: https://medium.com/@nelson.ron/influence-without-authority-a-guide-for-solution-architects-and-lead-engineers-3b56986bc3db?sk=ccab2afbc39e6783b868dd4300a4f908
+                - text: "Influence Without Authority: A Journey from Blunt Force to Bridge Building"
+                - img [ref=e102]
+                - generic [ref=e104]: (opens in new tab)
+            - paragraph [ref=e105]: "Influence Without Authority: A Journey from Blunt Force to Bridge Building Why the “right” technical solution is often the wrong leadership move — and how to pivot."
+            - generic [ref=e107]:
+              - generic [ref=e108]:
+                - generic [ref=e109]: 6 min read
+                - generic [ref=e110]: •
+                - time [ref=e111]: February 28
+              - 'link "Influence Without Authority: A Journey from Blunt Force to Bridge Building" [ref=e112] [cursor=pointer]':
+                - /url: https://medium.com/@nelson.ron/influence-without-authority-a-guide-for-solution-architects-and-lead-engineers-3b56986bc3db?sk=ccab2afbc39e6783b868dd4300a4f908
+                - generic [ref=e113]: "Influence Without Authority: A Journey from Blunt Force to Bridge Building"
+                - generic [ref=e114]: →
+        - article [ref=e115]:
+          - link [ref=e116] [cursor=pointer]:
+            - /url: /leadership/annual-scout-planning
+          - generic [ref=e117]:
+            - link "Leadership" [ref=e119] [cursor=pointer]:
+              - /url: /leadership
+            - heading "Annual Scout Planning" [level=3] [ref=e120]:
+              - link "Annual Scout Planning" [ref=e121] [cursor=pointer]:
+                - /url: /leadership/annual-scout-planning
+            - paragraph [ref=e122]: Building our troop's annual plan revealed how we can better support scouts. Here's what full visibility showed us about what scouts actually need.
+            - generic [ref=e124]:
+              - generic [ref=e125]:
+                - generic [ref=e126]: 7 min read
+                - generic [ref=e127]: •
+                - time [ref=e128]: February 1
+              - link "Annual Scout Planning" [ref=e129] [cursor=pointer]:
+                - /url: /leadership/annual-scout-planning
+                - generic [ref=e130]: Annual Scout Planning
+                - generic [ref=e131]: →
+      - link "View all Leadership articles" [ref=e133] [cursor=pointer]:
+        - /url: /leadership
+        - text: View all
+        - img [ref=e134]
+    - generic [ref=e137]:
+      - generic [ref=e139]:
+        - heading "Life" [level=2] [ref=e140]
+        - paragraph [ref=e141]: Personal stories and experiences outside of work. From cooking and family moments to scouting adventures and reflections on relationships, this section shares the human side of the journey—what makes life meaningful, memorable, and worth living.
+      - generic [ref=e142]:
+        - article [ref=e143]:
+          - link [ref=e144] [cursor=pointer]:
+            - /url: /life/alps-mountaineering-ranger
+          - generic [ref=e145]:
+            - link "Life" [ref=e147] [cursor=pointer]:
+              - /url: /life
+            - heading "Alps Mountaineering Ranger - One-Person Tent Review" [level=3] [ref=e148]:
+              - link "Alps Mountaineering Ranger - One-Person Tent Review" [ref=e149] [cursor=pointer]:
+                - /url: /life/alps-mountaineering-ranger
+            - paragraph [ref=e150]: My first impressions of the Alps Mountaineering one-person tent after two campouts. Quick setup, standing headroom, and room for a cot make this a solid upgrade from ground sleeping. Real testing results inside.
+            - generic [ref=e152]:
+              - generic [ref=e153]:
+                - generic [ref=e154]: 4 min read
+                - generic [ref=e155]: •
+                - time [ref=e156]: October 5
+              - link "Alps Mountaineering Ranger - One-Person Tent Review" [ref=e157] [cursor=pointer]:
+                - /url: /life/alps-mountaineering-ranger
+                - generic [ref=e158]: Alps Mountaineering Ranger - One-Person Tent Review
+                - generic [ref=e159]: →
+        - article [ref=e160]:
+          - link [ref=e161] [cursor=pointer]:
+            - /url: /life/out-island-adventure
+          - generic [ref=e162]:
+            - link "Life" [ref=e164] [cursor=pointer]:
+              - /url: /life
+            - 'heading "Seabase Out Island Adventure: A Scout Leader''s Journey" [level=3] [ref=e165]':
+              - 'link "Seabase Out Island Adventure: A Scout Leader''s Journey" [ref=e166] [cursor=pointer]':
+                - /url: /life/out-island-adventure
+            - paragraph [ref=e167]: Our 4-day Seabase Out Island Adventure tested 12 scouts through war canoe paddling, shark fishing, snorkeling, and kayaking. A transformative high adventure experience for youth and leaders alike.
+            - generic [ref=e169]:
+              - generic [ref=e170]:
+                - generic [ref=e171]: 7 min read
+                - generic [ref=e172]: •
+                - time [ref=e173]: October 4
+              - 'link "Seabase Out Island Adventure: A Scout Leader''s Journey" [ref=e174] [cursor=pointer]':
+                - /url: /life/out-island-adventure
+                - generic [ref=e175]: "Seabase Out Island Adventure: A Scout Leader's Journey"
+                - generic [ref=e176]: →
+      - link "View all Life articles" [ref=e178] [cursor=pointer]:
+        - /url: /life
+        - text: View all
+        - img [ref=e179]
+    - generic [ref=e183]:
+      - generic [ref=e184]:
+        - heading "About Ron Nelson" [level=2] [ref=e185]
+        - paragraph [ref=e186]: I'm a father, husband, and software engineer passionate about family, the outdoors, and building software and leading effective teams. Here I share what I'm learning about technology, leadership, and life.
+        - generic [ref=e187]:
+          - link "GitHub (opens in new tab)" [ref=e188] [cursor=pointer]:
+            - /url: https://github.com/kcbrewron
+            - img [ref=e189]
+          - link "LinkedIn (opens in new tab)" [ref=e191] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/kc-ronnelson
+            - img [ref=e192]
+          - link "Twitter (opens in new tab)" [ref=e194] [cursor=pointer]:
+            - /url: https://twitter.com/kcbrewron
+            - img [ref=e195]
+      - generic [ref=e197]:
+        - generic [ref=e198]:
+          - heading "Stay in the loop" [level=3] [ref=e199]
+          - paragraph [ref=e200]: Get new articles on cloud architecture, leadership, and life delivered directly to your inbox. No spam, unsubscribe anytime.
+        - generic [ref=e201]:
+          - generic [ref=e202]:
+            - generic [ref=e203]: Email address
+            - textbox "Email address" [ref=e204]:
+              - /placeholder: you@example.com
+          - group "Topics" [ref=e205]:
+            - generic [ref=e206]: Topics
+            - generic [ref=e207]:
+              - generic [ref=e208] [cursor=pointer]:
+                - checkbox "Architecture" [checked] [ref=e209]
+                - generic [ref=e210]: Architecture
+              - generic [ref=e211] [cursor=pointer]:
+                - checkbox "Leadership" [checked] [ref=e212]
+                - generic [ref=e213]: Leadership
+              - generic [ref=e214] [cursor=pointer]:
+                - checkbox "Life" [checked] [ref=e215]
+                - generic [ref=e216]: Life
+          - button "Subscribe to Newsletter" [ref=e219]
+  - contentinfo [ref=e220]:
+    - generic [ref=e221]:
+      - generic [ref=e222]:
+        - generic [ref=e223]:
+          - link "ronnelson.dev" [ref=e224] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e225]: ronnelson.dev
+          - paragraph [ref=e226]: Practical insights on Cloudflare Workers, distributed systems, and building production software.
+        - generic [ref=e227]:
+          - heading "Categories" [level=3] [ref=e228]
+          - navigation [ref=e229]:
+            - link "Cloud & Software Architecture" [ref=e230] [cursor=pointer]:
+              - /url: /cloud
+            - link "Leadership" [ref=e231] [cursor=pointer]:
+              - /url: /leadership
+            - link "Life" [ref=e232] [cursor=pointer]:
+              - /url: /life
+        - generic [ref=e233]:
+          - heading "Resources" [level=3] [ref=e234]
+          - navigation [ref=e235]:
+            - link "Sitemap" [ref=e236] [cursor=pointer]:
+              - /url: /sitemap.xml
+            - button "RSS Feed is not yet available" [ref=e237]: RSS Feed
+            - button "Contact is not yet available" [ref=e238]: Contact
+      - generic [ref=e240]:
+        - paragraph [ref=e241]: © 2026 ronnelson.dev. All rights reserved.
+        - paragraph [ref=e242]: Built with Cloudflare Workers & Contentful
+```
