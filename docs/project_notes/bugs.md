@@ -2,7 +2,7 @@
 
 Use this file to log issues encountered during development.
 
-## Format
+## YYYY-MM-DD BUG-000X - Bug Title
 
 Each entry should include:
 - **Issue:** What went wrong

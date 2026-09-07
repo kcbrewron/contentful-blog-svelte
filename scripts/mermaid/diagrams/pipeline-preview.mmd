@@ -1,0 +1,15 @@
+flowchart LR
+    classDef blue fill:#EFF6FF,stroke:#2563EB,stroke-width:2px,color:#111827
+    classDef amber fill:#FFFBEB,stroke:#D97706,stroke-width:2px,color:#111827
+    classDef gray fill:#F9FAFB,stroke:#D1D5DB,stroke-width:2px,color:#111827
+
+    N["SOAP Note"]:::gray
+    E["`**Extract**
+    LLM reads shorthand`"]:::amber
+    M["`**Match**
+    embeddings + pgvector`"]:::blue
+    C["`**Classify**
+    bucket the gap`"]:::amber
+    F["Finding"]:::gray
+
+    N --> E --> M --> C --> F

@@ -1,0 +1,67 @@
+{
+  "_comment": "Mermaid themeVariables mapped to ronnelson.dev BRAND_GUIDE.md (v1.0). Base theme = 'base' so these variables actually take effect (Mermaid ignores themeVariables under 'default').",
+  "theme": "base",
+  "themeVariables": {
+    "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, sans-serif",
+    "fontSize": "15px",
+
+    "background": "#FFFFFF",
+    "primaryColor": "#EFF6FF",
+    "primaryTextColor": "#111827",
+    "primaryBorderColor": "#2563EB",
+
+    "secondaryColor": "#FAF5FF",
+    "secondaryTextColor": "#111827",
+    "secondaryBorderColor": "#9333EA",
+
+    "tertiaryColor": "#F0FDF4",
+    "tertiaryTextColor": "#111827",
+    "tertiaryBorderColor": "#16A34A",
+
+    "lineColor": "#9CA3AF",
+    "textColor": "#374151",
+
+    "mainBkg": "#EFF6FF",
+    "nodeBorder": "#2563EB",
+    "clusterBkg": "#F9FAFB",
+    "clusterBorder": "#D1D5DB",
+    "defaultLinkColor": "#9CA3AF",
+    "titleColor": "#111827",
+
+    "edgeLabelBackground": "#FFFFFF",
+    "nodeTextColor": "#111827",
+
+    "actorBkg": "#EFF6FF",
+    "actorBorder": "#2563EB",
+    "actorTextColor": "#111827",
+    "actorLineColor": "#D1D5DB",
+    "signalColor": "#374151",
+    "signalTextColor": "#111827",
+    "labelBoxBkgColor": "#F9FAFB",
+    "labelBoxBorderColor": "#D1D5DB",
+    "labelTextColor": "#111827",
+    "loopTextColor": "#4B5563",
+    "noteBkgColor": "#FFFBEB",
+    "noteBorderColor": "#D97706",
+    "noteTextColor": "#111827",
+    "activationBkgColor": "#F3F4F6",
+    "activationBorderColor": "#2563EB",
+    "sequenceNumberColor": "#FFFFFF",
+
+    "errorBkgColor": "#FEF2F2",
+    "errorTextColor": "#DC2626"
+  },
+  "_semanticAccentPalette": {
+    "_comment": "Use these as explicit per-node classDef fills when a diagram needs more than one accent (e.g. distinguishing a queue/async path, or a warning/AI step). Pulled 1:1 from BRAND_GUIDE.md Section 2.",
+    "blue":   { "bg": "#EFF6FF", "border": "#2563EB", "text": "#111827", "role": "primary / interactive / UI path" },
+    "purple": { "bg": "#FAF5FF", "border": "#9333EA", "text": "#111827", "role": "category purple / secondary grouping (e.g. Clinic tier)" },
+    "green":  { "bg": "#F0FDF4", "border": "#16A34A", "text": "#111827", "role": "success / doctor tier / positive state" },
+    "amber":  { "bg": "#FFFBEB", "border": "#D97706", "text": "#111827", "role": "warning / AI or inference step / draft state" },
+    "red":    { "bg": "#FEF2F2", "border": "#DC2626", "text": "#111827", "role": "error / queue / destructive / API trust boundary" },
+    "gray":   { "bg": "#F9FAFB", "border": "#D1D5DB", "text": "#4B5563", "role": "neutral / infrastructure / muted context" }
+  },
+  "_fonts": {
+    "sans": "Inter",
+    "mono": "JetBrains Mono"
+  }
+}

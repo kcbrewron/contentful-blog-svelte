@@ -3,7 +3,13 @@
     "allow": [
       "WebFetch(domain:svelte.dev)",
       "Bash(yarn test:unit)",
-      "mcp__plugin_context7_context7__resolve-library-id"
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "Bash(git:*)",
+      "Bash(yarn remove:*)",
+      "Bash(yarn add:*)",
+      "Bash(yarn info:*)",
+      "Bash(yarn list:*)",
+      "Bash(yarn test:e2e:*)"
     ]
   }
 }

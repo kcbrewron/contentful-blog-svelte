@@ -35,9 +35,20 @@
 						? /** @type {any} */ (result.data)?.error ?? 'Something went wrong. Please try again.'
 						: 'Something went wrong. Please try again.';
 
-				// Reset the Turnstile widget so the user can retry
+				// Reset the Turnstile widget so the user can retry.
+				// Read the widget ID Turnstile stamps on the container rather than passing
+				// the element itself — the element reference can be stale after DOM patching.
 				if (typeof window !== 'undefined' && window.turnstile && turnstileContainer) {
-					window.turnstile.reset(turnstileContainer);
+					const widgetId = turnstileContainer.dataset?.cfTurnstileWidgetId;
+					try {
+						if (widgetId) {
+							window.turnstile.reset(widgetId);
+						} else {
+							window.turnstile.reset(turnstileContainer);
+						}
+					} catch {
+						// Widget was already removed or expired — nothing to reset
+					}
 				}
 
 				await update({ reset: false });
@@ -85,7 +96,7 @@
 				required
 				placeholder="you@example.com"
 				disabled={isLoading}
-				class="w-full h-12 px-4 rounded-lg bg-[#1A1A2E] border border-[#2A2A3E] text-white placeholder-[#52525B] text-sm focus:outline-none focus:border-brand-primary transition-colors disabled:opacity-60"
+				class="w-full h-12 px-4 rounded-lg bg-brand-border border border-brand-border-elevated text-white placeholder-zinc-600 text-sm focus:outline-none focus:border-brand-primary transition-colors disabled:opacity-60"
 			/>
 		</div>
 
