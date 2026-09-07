@@ -16,9 +16,9 @@ function resolveResponse(data) {
 	const entryMap = /** @type {Record<string, object>} */ ({});
 	const assetMap = /** @type {Record<string, object>} */ ({});
 
-	for (const e of data.includes?.Entry || []) entryMap[e.sys.id] = e;
-	for (const a of data.includes?.Asset || []) assetMap[a.sys.id] = a;
-	for (const e of data.items || []) entryMap[e.sys.id] = e;
+	for (const e of data.includes?.Entry || []) if (e.sys?.id) entryMap[e.sys.id] = e;
+	for (const a of data.includes?.Asset || []) if (a.sys?.id) assetMap[a.sys.id] = a;
+	for (const e of data.items || []) if (e.sys?.id) entryMap[e.sys.id] = e;
 
 	function resolve(value, depth) {
 		if (depth > 8 || value === null || typeof value !== 'object') return value;
@@ -63,6 +63,12 @@ export function getContentfulClient(options = { preview: false }) {
 	return {
 		/** @param {Record<string, unknown>} params */
 		async getEntries(params = {}) {
+			// The Delivery API strips `sys` from items when `select` is used unless
+			// `sys` is explicitly requested — without it, item.sys is undefined.
+			if (typeof params.select === 'string' && !params.select.split(',').includes('sys')) {
+				params = { ...params, select: `sys,${params.select}` };
+			}
+
 			const qs = new URLSearchParams(
 				Object.entries(params).map(([k, v]) => [k, String(v)])
 			).toString();

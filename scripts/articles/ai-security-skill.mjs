@@ -9,12 +9,12 @@ export default {
   title: 'Shifting Security Left with AI: Making Threat Modeling Part of the Dev Loop',
   slug: 'shift-left-security-ai-threat-modeling-skills',
   excerpt:
-    "\"Shift security left\" has been the DevSecOps rallying cry for a decade. The gap between the principle and the practice is where the breaches happen. AI coding assistants give us a new lever: a composable skill architecture that builds an architecture inventory from the codebase, conducts a structured back-and-forth to capture infrastructure context the code can't reveal, and embeds framework-aware security constraints — covering SvelteKit, Hono, Spring Boot, and FastAPI — directly into the development loop.",
+    '"Shift security left" has been DevSecOps\' rallying cry for a decade. The gap between principle and practice is where breaches happen. AI coding assistants close it: composable skills embedding framework-aware constraints into the development loop.',
   tags: ['devsecops', 'security', 'ai-development', 'threat-modeling', 'claude-code', 'shift-left', 'owasp'],
   estimatedReadingTime: 11,
   seoTitle: 'Shift Left Security with AI: Composable Threat Modeling Skills for DevSecOps',
   seoDescription:
-    'How a composable AI skill architecture embeds framework-specific OWASP security constraints into the development loop — covering SvelteKit, Hono, Spring Boot, and FastAPI.',
+    'How a composable skill architecture embeds framework-aware security constraints into the development loop — covering SvelteKit, Hono, Spring Boot, and FastAPI.',
   categorySearch: ['tech', 'ai', 'develop', 'software', 'cloud'],
   authorName: 'Ron Nelson',
   content: [
