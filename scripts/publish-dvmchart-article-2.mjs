@@ -228,7 +228,7 @@ async function main() {
   });
 
   const ulidCodeBlock = await createBlock('codeBlock', {
-    title: { 'en-US': 'clinics table — ULID primary key, not autoincrement' },
+    caption: { 'en-US': 'clinics table — ULID primary key, not autoincrement' },
     language: { 'en-US': 'sql' },
     code: {
       'en-US': `CREATE TABLE clinics (
@@ -262,7 +262,7 @@ async function main() {
   });
 
   const jwtCodeBlock = await createBlock('codeBlock', {
-    title: { 'en-US': 'apps/api/src/middleware/auth.ts — verifyJwt' },
+    caption: { 'en-US': 'apps/api/src/middleware/auth.ts — verifyJwt' },
     language: { 'en-US': 'typescript' },
     code: {
       'en-US': `// apps/api/src/middleware/auth.ts
