@@ -274,6 +274,11 @@
 /* ─── Prism syntax highlighting theme ──────────────────────────────────────── */
 /* Matches the existing bg-gray-800 dark code block background */
 
+pre[class*='language-'],
+code[class*='language-'] {
+	color: #e5e7eb; /* gray-200 fallback for untokenized/plaintext characters */
+}
+
 .token.comment,
 .token.prolog,
 .token.doctype,
