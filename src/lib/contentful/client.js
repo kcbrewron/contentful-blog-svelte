@@ -1,4 +1,3 @@
-import { createClient } from 'contentful';
 import { env } from '$env/dynamic/private';
 
 /**
@@ -7,17 +6,90 @@ import { env } from '$env/dynamic/private';
  */
 
 /**
- * Creates a Contentful client instance
- * @param {ContentfulClientOptions} options - Client configuration options
- * @returns {import('contentful').ContentfulClientApi} Contentful client
+ * Resolve Link objects in a Contentful response using the includes maps.
+ * Mirrors the behaviour of the official SDK's automatic link resolution.
+ * Depth limit prevents infinite loops from circular references.
+ * @param {{ items: Array, includes?: { Entry?: Array, Asset?: Array } }} data
+ * @returns {{ items: Array, total: number }}
  */
-function getContentfulClient(options = { preview: false }) {
-	return createClient({
-		space: env.CONTENTFUL_SPACE_ID,
-		accessToken: options.preview ? env.CONTENTFUL_PREVIEW_ACCESS_TOKEN : env.CONTENTFUL_ACCESS_TOKEN,
-		environment: env.CONTENTFUL_ENVIRONMENT || 'master',
-		host: options.preview ? 'preview.contentful.com' : 'cdn.contentful.com'
-	});
+function resolveResponse(data) {
+	const entryMap = /** @type {Record<string, object>} */ ({});
+	const assetMap = /** @type {Record<string, object>} */ ({});
+
+	for (const e of data.includes?.Entry || []) if (e.sys?.id) entryMap[e.sys.id] = e;
+	for (const a of data.includes?.Asset || []) if (a.sys?.id) assetMap[a.sys.id] = a;
+	for (const e of data.items || []) if (e.sys?.id) entryMap[e.sys.id] = e;
+
+	function resolve(value, depth) {
+		if (depth > 8 || value === null || typeof value !== 'object') return value;
+
+		if (value.sys?.type === 'Link') {
+			const target =
+				value.sys.linkType === 'Asset' ? assetMap[value.sys.id] : entryMap[value.sys.id];
+			return target ? resolve(target, depth + 1) : value;
+		}
+
+		if (Array.isArray(value)) return value.map((v) => resolve(v, depth));
+
+		const out = /** @type {Record<string, unknown>} */ ({});
+		for (const k of Object.keys(value)) out[k] = resolve(value[k], depth + 1);
+		return out;
+	}
+
+	return {
+		...data,
+		items: (data.items || []).map((item) => resolve(item, 0))
+	};
+}
+
+/**
+ * Creates a Contentful client that uses native fetch (no Axios/SDK).
+ * Returns the same getEntries/getEntry interface as the official SDK.
+ * @param {ContentfulClientOptions} options
+ */
+export function getContentfulClient(options = { preview: false }) {
+	const space = env.CONTENTFUL_SPACE_ID;
+	const environment = env.CONTENTFUL_ENVIRONMENT || 'master';
+	const host = options.preview ? 'preview.contentful.com' : 'cdn.contentful.com';
+	const token = options.preview
+		? env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
+		: env.CONTENTFUL_ACCESS_TOKEN;
+	const base = `https://${host}/spaces/${space}/environments/${environment}`;
+	const headers = {
+		Authorization: `Bearer ${token}`,
+		'Content-Type': 'application/vnd.contentful.delivery.v1+json'
+	};
+
+	return {
+		/** @param {Record<string, unknown>} params */
+		async getEntries(params = {}) {
+			// The Delivery API strips `sys` from items when `select` is used unless
+			// `sys` is explicitly requested — without it, item.sys is undefined.
+			if (typeof params.select === 'string' && !params.select.split(',').includes('sys')) {
+				params = { ...params, select: `sys,${params.select}` };
+			}
+
+			const qs = new URLSearchParams(
+				Object.entries(params).map(([k, v]) => [k, String(v)])
+			).toString();
+			const res = await fetch(`${base}/entries?${qs}`, { headers });
+			if (!res.ok) {
+				const text = await res.text().catch(() => '');
+				throw new Error(`Contentful getEntries ${res.status}: ${text.slice(0, 200)}`);
+			}
+			return resolveResponse(await res.json());
+		},
+
+		/** @param {string} id */
+		async getEntry(id) {
+			const res = await fetch(`${base}/entries/${id}`, { headers });
+			if (!res.ok) {
+				const text = await res.text().catch(() => '');
+				throw new Error(`Contentful getEntry ${res.status}: ${text.slice(0, 200)}`);
+			}
+			return res.json();
+		}
+	};
 }
 
 /**
@@ -25,19 +97,15 @@ function getContentfulClient(options = { preview: false }) {
  * @property {string} title
  * @property {string} slug
  * @property {Array<Object>} sections
- * @property {Object} [navigationBar]
- * @property {Object} [seoMetadata]
  */
 
 /**
- * Fetches a page by slug
- * @param {string} slug - Page slug
- * @param {boolean} preview - Use preview API
- * @returns {Promise<Page|null>} Page data or null if not found
+ * @param {string} slug
+ * @param {boolean} preview
+ * @returns {Promise<Page|null>}
  */
 export async function getPageBySlug(slug, preview = false) {
 	const client = getContentfulClient({ preview });
-
 	try {
 		const response = await client.getEntries({
 			content_type: 'page',
@@ -45,12 +113,7 @@ export async function getPageBySlug(slug, preview = false) {
 			include: 3,
 			limit: 1
 		});
-
-		if (response.items.length === 0) {
-			return null;
-		}
-
-		return response.items[0];
+		return response.items.length > 0 ? response.items[0] : null;
 	} catch (error) {
 		console.error('Error fetching page:', error);
 		throw error;
@@ -58,19 +121,13 @@ export async function getPageBySlug(slug, preview = false) {
 }
 
 /**
- * Fetches all pages
- * @param {boolean} preview - Use preview API
- * @returns {Promise<Array<Page>>} Array of pages
+ * @param {boolean} preview
+ * @returns {Promise<Array<Page>>}
  */
 export async function getAllPages(preview = false) {
 	const client = getContentfulClient({ preview });
-
 	try {
-		const response = await client.getEntries({
-			content_type: 'page',
-			include: 1
-		});
-
+		const response = await client.getEntries({ content_type: 'page', include: 1 });
 		return response.items;
 	} catch (error) {
 		console.error('Error fetching pages:', error);
@@ -79,21 +136,16 @@ export async function getAllPages(preview = false) {
 }
 
 /**
- * Fetches navigation bar
- * @param {string} id - Navigation bar ID
- * @param {boolean} preview - Use preview API
- * @returns {Promise<Object|null>} Navigation bar data
+ * @param {string} id
+ * @param {boolean} preview
+ * @returns {Promise<Object|null>}
  */
 export async function getNavigationBar(id, preview = false) {
 	const client = getContentfulClient({ preview });
-
 	try {
-		const entry = await client.getEntry(id);
-		return entry;
+		return await client.getEntry(id);
 	} catch (error) {
 		console.error('Error fetching navigation bar:', error);
 		throw error;
 	}
 }
-
-export { getContentfulClient };
