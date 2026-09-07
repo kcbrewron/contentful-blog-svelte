@@ -1,8 +1,9 @@
 import { getAllCategories, getAllBlogPostsForSitemap } from '$lib/contentful/queries.js';
+import { BASE_URL } from '$lib/config.js';
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function GET() {
-  const base = 'https://www.ronnelson.dev';
+  const base = BASE_URL;
 
   const [categories, posts] = await Promise.all([
     getAllCategories(),

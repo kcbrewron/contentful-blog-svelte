@@ -29,7 +29,7 @@
 	export let articleCount = 0;
 </script>
 
-<section class="bg-brand-dark text-white py-24 md:py-32 lg:py-[140px]">
+<section class="bg-brand-dark text-white pt-7 pb-12 md:pt-10 md:pb-16 lg:pt-12 lg:pb-18">
 	<div class="max-w-7xl mx-auto px-20">
 		<!-- Hero Badge -->
 		<div class="mb-8">

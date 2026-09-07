@@ -16,6 +16,14 @@
   --color-brand-border-elevated: #2A2A3E;
 }
 
+/* ─── Base font size ───────────────────────────────────────────────────────── */
+/* 112.5% of the 16px browser default = 18px root. Tailwind's rem-based utilities
+   (text-*, spacing, prose) scale off this, so raising it scales the whole site
+   uniformly instead of just individual font-size overrides. */
+html {
+	font-size: 112.5%;
+}
+
 /* ─── Focus-visible accessibility ─────────────────────────────────────────── */
 /* Remove default outline, add a visible focus ring for keyboard users only */
 *:focus {
@@ -32,6 +40,7 @@
 /* Single source of truth — referenced by ParagraphBlock and ImageContentBlock */
 .prose {
 	color: #374151;
+	font-size: 1.125rem;
 	line-height: 1.65;
 }
 

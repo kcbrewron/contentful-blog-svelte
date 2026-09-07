@@ -6,4 +6,4 @@ Allow: /
 
 # Specify sitemap location if available
 # Replace example.com with your actual domain
-Sitemap: https://www.ronnelson.dev/sitemap.xml
+Sitemap: https://ronnelson.dev/sitemap.xml
